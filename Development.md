@@ -1,0 +1,76 @@
+## publish helm chart
+
+helm dependency update chart/ace-mp
+helm package chart/ace-mp
+helm push ace-mp-v2024.7.4.tgz oci://ghcr.io/appscode-charts
+
+
+## update vcluster chart
+
+helm fetch --untar --destination chart oci://ghcr.io/appscode-charts/vcluster-k0s --version 0.19.7
+helm package chart/vcluster-k0s
+helm push vcluster-k0s-0.19.7.tgz oci://ghcr.io/appscode-charts
+
+helm fetch --untar --destination chart oci://ghcr.io/appscode-charts/vcluster --version 0.19.7
+helm package chart/vcluster
+helm push vcluster-0.19.7.tgz oci://ghcr.io/appscode-charts
+
+---
+
+echo 'fs.inotify.max_user_instances=100000' | sudo tee -a /etc/sysctl.conf
+echo 'fs.inotify.max_user_watches=100000' | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+# Create k3s cluster
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s -
+
+echo 'alias k=kubectl' >> ~/.bashrc
+echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
+source ~/.bashrc
+
+# Recreate k3s cluster
+k3s-uninstall.sh
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s -
+cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/crd/app-crd.yaml"
+
+---
+
+## install vcluster cli
+
+curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.19.7/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
+
+---
+
+wget https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/marketplace/deployer_helm_base/create_manifests.sh
+
+---
+
+export REGISTRY=ghcr.io/appscode-gcp-mp
+export APP_NAME=ace-mp
+export TAG=v0.1.202474
+
+git pull origin master
+
+docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG .
+
+kubectl delete namespace ace
+kubectl create namespace ace
+
+mpdev install \
+  --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
+  --parameters='{"name": "ace-mp", "namespace": "ace", "installerURL": "https://appscode.com/links/installer/332800/gcp-mp/cql2l5r70noc73al1gr0-65cbwskpcc/archive.tar.gz"}'
+
+kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
+
+kubectl logs -f -n ace job/ace-mp-deployer
+
+kubectl logs -n ace job/ace-mp-deployer
+
+kubectl get pods -n ace -o yaml | grep image: | sort | uniq
+
+vcluster connect -n ace ace-mp
+
+vcluster disconnect
+
+vcluster connect ace-mp -n ace -- kubectl get hr -A

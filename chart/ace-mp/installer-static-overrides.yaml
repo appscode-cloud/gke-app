@@ -1,0 +1,168 @@
+helm:
+  releases:
+    ace:
+      values:
+        billing:
+          registryFQDN: ""
+        cluster-ui:
+          registryFQDN: ""
+        deploy-ui:
+          registryFQDN: ""
+        dns-proxy:
+          registryFQDN: ""
+        global:
+          registry: ""
+          registryFQDN: ""
+        grafana:
+          registryFQDN: ""
+        ingress-nginx:
+          controller:
+            admissionWebhooks:
+              patch:
+                image:
+                  digest: ""
+            image:
+              digest: ""
+              digestChroot: ""
+        kubedb-ui:
+          registryFQDN: ""
+        marketplace-ui:
+          registryFQDN: ""
+        platform-api:
+          registryFQDN: ""
+        platform-links:
+          registryFQDN: ""
+        platform-ui:
+          registryFQDN: ""
+        registryFQDN: ""
+        s3proxy:
+          registryFQDN: ""
+        smtprelay:
+          registryFQDN: ""
+        trickster:
+          registryFQDN: ""
+    cert-manager:
+      values:
+        cainjector:
+          enabled: false
+    external-dns-operator:
+      values:
+        registryFQDN: ""
+    kubedb:
+      values:
+        global:
+          registry: ""
+          registryFQDN: ""
+        kubedb-autoscaler:
+          registryFQDN: ""
+        kubedb-crd-manager:
+          registryFQDN: ""
+        kubedb-ops-manager:
+          registryFQDN: ""
+        kubedb-provisioner:
+          registryFQDN: ""
+        kubedb-schema-manager:
+          registryFQDN: ""
+        kubedb-webhook-server:
+          registryFQDN: ""
+        petset:
+          registryFQDN: ""
+        sidekick:
+          registryFQDN: ""
+        supervisor:
+          registryFQDN: ""
+    kubestash:
+      values:
+        global:
+          registry: ""
+          registryFQDN: ""
+        kubestash-operator:
+          registryFQDN: ""
+    license-proxyserver:
+      values:
+        registryFQDN: ""
+    opscenter-features:
+      values:
+        helm:
+          releases:
+            catalog-manager:
+              values:
+                registryFQDN: ""
+            external-dns-operator:
+              values:
+                registryFQDN: ""
+            grafana-operator:
+              values:
+                registryFQDN: ghcr.io
+            kubedb:
+              values:
+                global:
+                  registry: ""
+                  registryFQDN: ""
+                kubedb-autoscaler:
+                  registryFQDN: ""
+                kubedb-crd-manager:
+                  registryFQDN: ""
+                kubedb-ops-manager:
+                  registryFQDN: ""
+                kubedb-provisioner:
+                  registryFQDN: ""
+                kubedb-schema-manager:
+                  registryFQDN: ""
+                kubedb-webhook-server:
+                  registryFQDN: ""
+                petset:
+                  registryFQDN: ""
+                sidekick:
+                  registryFQDN: ""
+                supervisor:
+                  registryFQDN: ""
+            kubedb-opscenter:
+              values:
+                global:
+                  registry: ""
+                  registryFQDN: ""
+                kubedb-ui-server:
+                  registryFQDN: ""
+            kubestash:
+              values:
+                global:
+                  registry: ""
+                  registryFQDN: ""
+                kubestash-operator:
+                  registryFQDN: ""
+            kubevault:
+              values:
+                global:
+                  registryFQDN: ""
+                kubevault-operator:
+                  registryFQDN: ""
+                kubevault-webhook-server:
+                  registryFQDN: ""
+            kubevault-opscenter:
+              values:
+                registryFQDN: ""
+            license-proxyserver:
+              values:
+                registryFQDN: ""
+            monitoring-operator:
+              values:
+                registryFQDN: ghcr.io
+            panopticon:
+              values:
+                registryFQDN: ""
+            service-backend:
+              values:
+                registryFQDN: ""
+            service-provider:
+              values:
+                registryFQDN: ""
+            sidekick:
+              values:
+                registryFQDN: ""
+            supervisor:
+              values:
+                registryFQDN: ""
+    panopticon:
+      values:
+        registryFQDN: ""

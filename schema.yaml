@@ -1,0 +1,916 @@
+x-google-marketplace:
+  schemaVersion: v2
+
+  applicationApiVersion: v1beta1
+  # The published version is required and MUST match the tag
+  # of the deployer image
+  publishedVersion: '0.1.20240704'
+  publishedVersionMetadata:
+    releaseNote: >-
+      A first release.
+
+  # The images property will be filled in during part 2
+  images:
+    csi-driver-cacerts:
+      properties:
+        cert-manager-csi-driver-cacerts.driver.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.driver.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.driver.tag:
+          type: TAG
+    csi-node-driver-registrar:
+      properties:
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.tag:
+          type: TAG
+    csi-driver-livenessprobe:
+      properties:
+        cert-manager-csi-driver-cacerts.livenessProbe.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.livenessProbe.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.livenessProbe.tag:
+          type: TAG
+    coredns:
+      properties:
+        vcluster.coredns.image:
+          type: FULL
+    k0s:
+      properties:
+        vcluster.vcluster.image:
+          type: FULL
+    vcluster-plugin:
+      properties:
+        vcluster.plugin.vcluster-plugin.image:
+          type: FULL
+    vcluster:
+      properties:
+        vcluster.syncer.image:
+          type: FULL
+    alpine:
+      properties:
+        vcluster.syncer.overrideHostsContainerImage:
+          type: FULL
+
+    # fluxcd
+    flux-cli:
+      properties:
+        flux2.cli.image:
+          type: REPO_WITH_REGISTRY
+        flux2.cli.tag:
+          type: TAG
+    flux-helm-controller:
+      properties:
+        flux2.helmController.image:
+          type: REPO_WITH_REGISTRY
+        flux2.helmController.tag:
+          type: TAG
+    flux-source-controller:
+      properties:
+        flux2.sourceController.image:
+          type: REPO_WITH_REGISTRY
+        flux2.sourceController.tag:
+          type: TAG
+
+    # ace-installer
+    license-proxyserver:
+      properties:
+        ace-installer.helm.releases.license-proxyserver.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.license-proxyserver.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.license-proxyserver.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.license-proxyserver.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.license-proxyserver.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.license-proxyserver.values.image.tag:
+          type: TAG
+
+    cert-manager-controller:
+      properties:
+        ace-installer.helm.releases.cert-manager.values.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.cert-manager.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.image.tag:
+          type: TAG
+
+    cert-manager-webhook:
+      properties:
+        ace-installer.helm.releases.cert-manager.values.webhook.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.cert-manager.values.webhook.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.webhook.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.webhook.image.tag:
+          type: TAG
+
+    cert-manager-cainjector:
+      properties:
+        ace-installer.helm.releases.cert-manager.values.cainjector.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.cert-manager.values.cainjector.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.cainjector.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.cainjector.image.tag:
+          type: TAG
+
+    cert-manager-acmesolver:
+      properties:
+        ace-installer.helm.releases.cert-manager.values.acmesolver.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.cert-manager.values.acmesolver.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.acmesolver.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.acmesolver.image.tag:
+          type: TAG
+
+    cert-manager-startupapicheck:
+      properties:
+        ace-installer.helm.releases.cert-manager.values.startupapicheck.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.cert-manager.values.startupapicheck.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.startupapicheck.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.cert-manager.values.startupapicheck.image.tag:
+          type: TAG
+
+    gateway:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-gateway.values.deployment.envoyGateway.image:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-gateway.values.deployment.envoyGateway.tag:
+          type: TAG
+    kube-rbac-proxy:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-gateway.values.deployment.kubeRbacProxy.image:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-gateway.values.deployment.kubeRbacProxy.tag:
+          type: TAG
+
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.rbacproxy.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.rbacproxy.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.rbacproxy.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.rbacproxy.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.rbacproxy.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.rbacproxy.tag:
+          type: TAG
+
+        ace-installer.helm.releases.kubedb.values.petset.rbacproxy.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.petset.rbacproxy.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.petset.rbacproxy.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.rbacproxy.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.rbacproxy.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.rbacproxy.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.kubeRBACProxy.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.kubeRBACProxy.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.kubeRBACProxy.image.tag:
+          type: TAG
+
+    snapshot-controller:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.snapshot-controller.values.controller.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.snapshot-controller.values.controller.image.tag:
+          type: TAG
+    snapshot-validation-webhook:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.snapshot-controller.values.webhook.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.snapshot-controller.values.webhook.image.tag:
+          type: TAG
+
+    catalog-manager:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.catalog-manager.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.catalog-manager.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.catalog-manager.values.image.tag:
+          type: TAG
+
+    service-provider:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-provider.values.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-provider.values.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-provider.values.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-backend.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-backend.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.service-backend.values.image.tag:
+          type: TAG
+
+    vault-operator:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.kubevault-webhook-server.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.kubevault-webhook-server.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubevault.values.kubevault-operator.kubevault-webhook-server.tag:
+          type: TAG
+
+    sidekick:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.sidekick.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.sidekick.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.sidekick.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.kubedb.values.sidekick.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.sidekick.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.sidekick.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.sidekick.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.sidekick.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.sidekick.image.tag:
+          type: TAG
+
+    supervisor:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.supervisor.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.supervisor.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.supervisor.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.kubedb.values.supervisor.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.supervisor.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.supervisor.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.supervisor.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.supervisor.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.supervisor.image.tag:
+          type: TAG
+
+    external-dns-operator:
+      properties:
+        ace-installer.helm.releases.external-dns-operator.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.external-dns-operator.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.external-dns-operator.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.external-dns-operator.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.external-dns-operator.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.external-dns-operator.values.image.tag:
+          type: TAG
+
+    panopticon:
+      properties:
+        ace-installer.helm.releases.panopticon.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.panopticon.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.panopticon.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.image.tag:
+          type: TAG
+
+    petset:
+      properties:
+        ace-installer.helm.releases.kubedb.values.petset.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.petset.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.petset.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.petset.operator.tag:
+          type: TAG
+
+    kubedb-crd-manager:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-crd-manager.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-crd-manager.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-crd-manager.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-crd-manager.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-crd-manager.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-crd-manager.image.tag:
+          type: TAG
+
+    kubedb-provisioner:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.operator.tag:
+          type: TAG
+
+    kubedb-webhook-server:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-webhook-server.server.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-webhook-server.server.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-webhook-server.server.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-webhook-server.server.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-webhook-server.server.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-webhook-server.server.tag:
+          type: TAG
+
+    kubedb-ops-manager:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.operator.tag:
+          type: TAG
+
+    kubedb-autoscaler:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.operator.tag:
+          type: TAG
+
+    kubedb-schema-manager:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.operator.tag:
+          type: TAG
+
+    k8s-wait-for:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.ace.values.openfga.initContainer.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.ace.values.openfga.initContainer.tag:
+          type: TAG
+
+        ace-installer.helm.releases.ace.values.openfga.datastore.migrations.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.ace.values.openfga.datastore.migrations.image.tag:
+          type: TAG
+
+    kubedb-ui-server:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.tag:
+          type: TAG
+
+    kubestash:
+      properties:
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubestash.values.kubestash-operator.operator.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.operator.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.operator.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubestash.values.kubestash-operator.operator.tag:
+          type: TAG
+
+    reloader:
+      properties:
+        ace-installer.helm.releases.reloader.values.reloader.deployment.image.name:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.reloader.values.reloader.deployment.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.reloader.values.reloader.deployment.image.name:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.reloader.values.reloader.deployment.image.tag:
+          type: TAG
+
+    kubectl:
+      properties:
+        ace-installer.helm.releases.panopticon.values.cleaner.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.panopticon.values.cleaner.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.panopticon.values.cleaner.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.cleaner.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.cleaner.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.cleaner.tag:
+          type: TAG
+
+    b3:
+      properties:
+        ace-installer.helm.releases.ace.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.ace.values.billing.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.billing.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.billing.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.ace.values.platform-api.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.platform-api.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.platform-api.image.tag:
+          type: TAG
+
+    maxmind-geoip:
+      properties:
+        ace-installer.helm.releases.ace.values.platform-api.geoipdb.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.platform-api.geoipdb.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.platform-api.geoipdb.tag:
+          type: TAG
+
+    platform-ui:
+      properties:
+        ace-installer.helm.releases.ace.values.platform-ui.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.platform-ui.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.platform-ui.image.tag:
+          type: TAG
+
+    cluster-ui:
+      properties:
+        ace-installer.helm.releases.ace.values.cluster-ui.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.cluster-ui.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.cluster-ui.image.tag:
+          type: TAG
+
+    deploy-ui:
+      properties:
+        ace-installer.helm.releases.ace.values.deploy-ui.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.deploy-ui.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.deploy-ui.image.tag:
+          type: TAG
+
+    grafana:
+      properties:
+        ace-installer.helm.releases.ace.values.grafana.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.grafana.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.grafana.image.tag:
+          type: TAG
+
+    kubedb-ui:
+      properties:
+        ace-installer.helm.releases.ace.values.kubedb-ui.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.kubedb-ui.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.kubedb-ui.image.tag:
+          type: TAG
+
+    marketplace-ui:
+      properties:
+        ace-installer.helm.releases.ace.values.marketplace-ui.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.marketplace-ui.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.marketplace-ui.image.tag:
+          type: TAG
+
+    fileserver:
+      properties:
+        ace-installer.helm.releases.ace.values.platform-links.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.platform-links.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.platform-links.image.tag:
+          type: TAG
+
+    s3proxy:
+      properties:
+        ace-installer.helm.releases.ace.values.s3proxy.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.s3proxy.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.s3proxy.image.tag:
+          type: TAG
+
+    trickster:
+      properties:
+        ace-installer.helm.releases.ace.values.trickster.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.trickster.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.trickster.image.tag:
+          type: TAG
+
+    prom-authproxy:
+      properties:
+        ace-installer.helm.releases.ace.values.trickster.sidecars.spec.auth.image:
+          type: FULL
+
+
+    ingress-nginx-controller:
+      properties:
+        ace-installer.helm.releases.ace.values.ingress-nginx.controller.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.controller.image.image:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.controller.image.tag:
+          type: TAG
+
+    ingress-nginx-kube-webhook-certgen:
+      properties:
+        ace-installer.helm.releases.ace.values.ingress-nginx.admissionWebhooks.patch.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.admissionWebhooks.patch.image.image:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.admissionWebhooks.patch.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.admissionWebhooks.patch.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.admissionWebhooks.patch.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.admissionWebhooks.patch.image.tag:
+          type: TAG
+
+    ingress-nginx-defaultbackend:
+      properties:
+        ace-installer.helm.releases.ace.values.ingress-nginx.defaultbackend.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.defaultbackend.image.image:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.ingress-nginx.defaultbackend.image.tag:
+          type: TAG
+
+    nats:
+      properties:
+        ace-installer.helm.releases.ace.values.nats.nats.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.nats.nats.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.nats.nats.image.tag:
+          type: TAG
+
+    nats-boot-config:
+      properties:
+        ace-installer.helm.releases.ace.values.nats.bootconfig.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.nats.bootconfig.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.nats.bootconfig.image.tag:
+          type: TAG
+
+    prometheus-nats-exporter:
+      properties:
+        ace-installer.helm.releases.ace.values.nats.exporter.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.nats.exporter.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.nats.exporter.image.tag:
+          type: TAG
+
+    nats-server-config-reloader:
+      properties:
+        ace-installer.helm.releases.ace.values.nats.reloader.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.nats.reloader.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.nats.reloader.image.tag:
+          type: TAG
+
+    openfga:
+      properties:
+        ace-installer.helm.releases.ace.values.openfga.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.ace.values.openfga.image.tag:
+          type: TAG
+
+    grafana-tools:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.grafana-operator.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.grafana-operator.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.grafana-operator.values.image.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.monitoring-operator.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.monitoring-operator.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.monitoring-operator.values.image.tag:
+          type: TAG
+
+    metrics-server:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.metrics-server.values.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.metrics-server.values.image.tag:
+          type: TAG
+
+    prometheus-adapter:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.prometheus-adapter.values.image.repository:
+          type: REPO_WITH_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.prometheus-adapter.values.image.tag:
+          type: TAG
+
+    # kube-prometheus-stack
+    alertmanager:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.alertmanager.alertmanagerSpec.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.alertmanager.alertmanagerSpec.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.alertmanager.alertmanagerSpec.image.tag:
+          type: TAG
+
+    prometheus-operator:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.image.tag:
+          type: TAG
+
+    prometheus-config-reloader:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.prometheusConfigReloader.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.prometheusConfigReloader.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.prometheusConfigReloader.image.tag:
+          type: TAG
+
+    thanos:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.tag:
+          type: TAG
+
+    prometheus:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus.prometheusSpec.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus.prometheusSpec.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus.prometheusSpec.image.tag:
+          type: TAG
+
+    thanosRuler:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.tag:
+          type: TAG
+
+    kube-state-metrics:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.kube-state-metrics.image.tag:
+          type: TAG
+
+    prometheus-node-exporter:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus-node-exporter.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus-node-exporter.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus-node-exporter.image.tag:
+          type: TAG
+
+  deployerServiceAccount:
+    description:
+      Creates app resources including crds.
+    roles:
+    - type: ClusterRole
+      rulesType: CUSTOM
+      rules:
+      - apiGroups:
+        - 'apiextensions.k8s.io'
+        resources:
+        - 'customresourcedefinitions'
+        verbs: ['*']
+      - apiGroups:
+        - 'rbac.authorization.k8s.io'
+        resources:
+        - 'clusterroles'
+        - 'clusterrolebindings'
+        verbs: ['*']
+      - apiGroups:
+        - 'storage.k8s.io'
+        resources:
+        - 'csidrivers'
+        verbs: ['get', 'create']
+
+properties:
+  name:
+    type: string
+    x-google-marketplace:
+      type: NAME
+  namespace:
+    type: string
+    x-google-marketplace:
+      type: NAMESPACE
+  installerURL:
+    type: string
+  # https://www.vcluster.com/docs/v0.19/networking/coreDNS#fallback-to-host-dns
+  vcluster.fallbackHostDns:
+    type: boolean
+    x-google-marketplace:
+      type: ISTIO_ENABLED
+
+required:
+- name
+- namespace
+- installerURL
+

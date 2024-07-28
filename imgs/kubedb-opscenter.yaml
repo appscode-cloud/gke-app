@@ -1,0 +1,14 @@
+kubedb-opscenter:
+  global:
+    registry: ""
+    registryFQDN: ghcr.io
+  kubedb-metrics:
+    enabled: true
+  kubedb-ui-server:
+    registryFQDN: ghcr.io
+    image:
+      registry: kubedb
+      repository: kubedb-ui-server
+      tag: ""
+  kubedb-grafana-dashboards:
+    enabled: true

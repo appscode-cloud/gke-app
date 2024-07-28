@@ -1,0 +1,56 @@
+x-google-marketplace:
+  images:
+    '':  # Primary image has no name.
+      properties:
+        imageProxyFull:
+          type: FULL
+        imageProxyRegistry:
+          type: REGISTRY
+        imageProxyRepo:
+          type: REPO_WITHOUT_REGISTRY
+        imageProxyTag:
+          type: TAG
+
+    # cert-manager-csi-driver-cacerts
+    csi-driver-cacerts:
+      properties:
+        cert-manager-csi-driver-cacerts.driver.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.driver.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.driver.tag:
+          type: TAG
+    csi-node-driver-registrar:
+      properties:
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.nodeDriverRegistrar.tag:
+          type: TAG
+    csi-driver-livenessprobe:
+      properties:
+        cert-manager-csi-driver-cacerts.livenessProbe.registry:
+          type: REGISTRY
+        cert-manager-csi-driver-cacerts.livenessProbe.repository:
+          type: REPO_WITHOUT_REGISTRY
+        cert-manager-csi-driver-cacerts.livenessProbe.tag:
+          type: TAG
+
+    # vcluster
+    coredns:
+      properties:
+        vcluster.coredns.image:
+          type: FULL
+    k0s:
+      properties:
+        vcluster.vcluster.image:
+          type: FULL
+    vcluster-plugin:
+      properties:
+        vcluster.plugin.vcluster-plugin.image:
+          type: FULL
+    vcluster:
+      properties:
+        vcluster.syncer.image:
+          type: FULL

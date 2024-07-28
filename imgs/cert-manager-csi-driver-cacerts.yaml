@@ -1,0 +1,13 @@
+registryFQDN: ""
+driver:
+  registry: ghcr.io
+  repository: appscode-gcp-mp/ace-mp/csi-driver-cacerts
+  tag: v0.1.20247.4
+nodeDriverRegistrar:
+  registry: ghcr.io
+  repository: appscode-gcp-mp/ace-mp/csi-node-driver-registrar
+  tag: v0.1.20247.4
+livenessProbe:
+  registry: ghcr.io
+  repository: appscode-gcp-mp/ace-mp/csi-driver-livenessprobe
+  tag: v0.1.20247.4

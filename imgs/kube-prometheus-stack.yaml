@@ -1,0 +1,74 @@
+
+alertmanager:
+  alertmanagerSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/alertmanager
+      tag: v0.26.0
+      sha: ""
+prometheusOperator:
+  admissionWebhooks:
+    patch:
+      image:
+        registry: registry.k8s.io
+        repository: ingress-nginx/kube-webhook-certgen
+        tag: v20221220-controller-v1.5.1-58-g787ea74b6
+        sha: ""
+  image:
+    registry: quay.io
+    repository: prometheus-operator/prometheus-operator
+    tag: ""
+    sha: ""
+
+
+  prometheusConfigReloader:
+    image:
+      registry: quay.io
+      repository: prometheus-operator/prometheus-config-reloader
+      # if not set appVersion field from Chart.yaml is used
+      tag: ""
+      sha: ""
+  thanosImage:
+    registry: quay.io
+    repository: thanos/thanos
+    tag: v0.32.5
+    sha: ""
+
+prometheus:
+  prometheusSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/prometheus
+      tag: v2.47.1
+      sha: ""
+
+thanosRuler:
+  thanosRulerSpec:
+    image:
+      registry: quay.io
+      repository: thanos/thanos
+      tag: v0.32.5
+      sha: ""
+
+kube-state-metrics:
+  image:
+    registry: registry.k8s.io
+    repository: kube-state-metrics/kube-state-metrics
+    # If unset use v + .Charts.appVersion
+    tag: ""
+    sha: ""
+  kubeRBACProxy:
+    enabled: false
+    image:
+      registry: quay.io
+      repository: brancz/kube-rbac-proxy
+      tag: v0.14.0
+      sha: ""
+
+prometheus-node-exporter:
+  image:
+    registry: quay.io
+    repository: prometheus/node-exporter
+    # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
+    tag: ""
+    digest: ""

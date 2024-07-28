@@ -1,0 +1,66 @@
+ace-installer:
+  helm:
+    releases:
+      ace:
+        values: {}
+      license-proxyserver:
+        values:
+          registryFQDN: ""
+          image:
+            registry: ghcr.io
+            repository: appscode-gcp-mp/ace-mp/license-proxyserver
+            tag: v0.1.202474
+      opscenter-features:
+        values: {}
+
+      ace:
+        values:
+      kubestash:
+        values:
+
+      kubedb:
+        values:
+      external-dns-operator:
+        values:
+      panopticon:
+        values:
+      reloader:
+        values:
+      cert-manager:
+        values:
+
+ace-installer:
+  helm:
+    releases:
+      opscenter-features:
+        values:
+          helm:
+            releases:
+              service-gateway:
+                values:
+                  deployment:
+                    envoyGateway:
+                      image:
+                        repository: ghcr.io/appscode-gcp-mp/ace-mp/gateway
+                        tag: v0.1.202474
+                    kubeRbacProxy:
+                      image:
+                        repository: ghcr.io/appscode-gcp-mp/ace-mp/kube-rbac-proxy
+                        tag: v0.1.202474
+
+              service-backend:
+                image:
+                  registry: ghcr.io
+                  repository: appscode-gcp-mp/ace-mp/service-provider
+                  tag: ""
+
+
+              service-provider:
+                operator:
+                  registry: ghcr.io
+                  repository: appscode-gcp-mp/ace-mp/service-provider
+                  tag: ""
+                rbacproxy:
+                  registry: ghcr.io
+                  repository: appscode-gcp-mp/ace-mp/kube-rbac-proxy
+                  tag: v0.1.202474

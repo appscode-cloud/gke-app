@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "ace-mp.fullname" . }}-test-connection"
+  labels:
+    {{- include "ace-mp.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['https://appscode.com']
+  restartPolicy: Never

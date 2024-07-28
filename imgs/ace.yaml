@@ -1,0 +1,185 @@
+global:
+  registry: ""
+  registryFQDN: ghcr.io
+
+image:
+  registry: appscode
+  repository: b3
+  tag: ""
+
+billing:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: b3
+    tag: ""
+
+platform-ui:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: platform-ui
+    tag: ""
+
+cluster-ui:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: cluster-ui
+    tag: ""
+
+deploy-ui:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: deploy-ui
+    tag: ""
+
+
+grafana:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: grafana
+    tag: ""
+
+kubedb-ui:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: kubedb-ui
+    tag: ""
+
+marketplace-ui:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: marketplace-ui
+    tag: ""
+
+platform-api:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: b3
+    tag: ""
+
+platform-links:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: fileserver
+    tag: ""
+
+
+ingress-nginx:
+  controller:
+    image:
+      registry: registry.k8s.io
+      image: ingress-nginx/controller
+      tag: "v1.9.3"
+      digest: sha256:8fd21d59428507671ce0fb47f818b1d859c92d2ad07bb7c947268d433030ba98
+      digestChroot: sha256:df4931fd6859fbf1a71e785f02a44b2f9a16f010ae852c442e9bb779cbefdc86
+    admissionWebhooks:
+      patch:
+        image:
+          registry: registry.k8s.io
+          image: ingress-nginx/kube-webhook-certgen
+          ## for backwards compatibility consider setting the full image url via the repository value below
+          ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
+          ## repository:
+          tag: v20231011-8b53cabe0
+          digest: sha256:a7943503b45d552785aa3b5e457f169a5661fb94d82b8a3373bcd9ebaf9aac80
+  defaultBackend:
+    image:
+      registry: registry.k8s.io
+      image: defaultbackend-amd64
+      ## for backwards compatibility consider setting the full image url via the repository value below
+      ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
+      ## repository:
+      tag: "1.5"
+
+
+ingress-dns:
+  enabled: false
+
+nats:
+  bootconfig:
+    image:
+      repository: natsio/nats-boot-config
+      tag: 0.11.0
+      pullPolicy: IfNotPresent
+      # registry: docker.io
+  exporter:
+    image:
+      repository: natsio/prometheus-nats-exporter
+      tag: 0.12.0
+      pullPolicy: IfNotPresent
+      # registry: docker.io
+  nats:
+    image:
+      registry: ghcr.io
+      repository: appscode-images/nats
+      tag: 2.10.18-alpine
+  reloader:
+    image:
+      repository: natsio/nats-server-config-reloader
+      tag: 0.11.0
+      # registry: docker.io
+
+
+
+
+
+nats-dns:
+  enabled: false
+
+trickster:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: trickster
+    tag: ""
+  sidecars:
+    spec:
+    - image: ghcr.io/appscode/prom-authproxy:v0.0.1
+
+
+s3proxy:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: s3proxy
+    tag: sha-a82ca68
+
+dns-proxy:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: cloudflare-dns-proxy
+    tag: ""
+
+
+openfga:
+  image:
+    repository: openfga/openfga
+    tag: ""
+
+  initContainer:
+    repository: groundnuty/k8s-wait-for
+    tag: "v2.0"
+
+  datastore:
+    migrations:
+      image:
+        repository: groundnuty/k8s-wait-for
+        pullPolicy: Always
+        tag: "v2.0"
+
+
+smtprelay:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: smtprelay
+    tag: ""

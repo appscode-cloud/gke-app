@@ -1,0 +1,219 @@
+
+
+
+kubedb:
+  global:
+    registry: ""
+    registryFQDN: ""
+  petset:
+    registryFQDN: ghcr.io
+    operator:
+      registry: appscode
+      repository: petset
+      tag: ""
+    rbacproxy:
+      registry: appscode
+      repository: kube-rbac-proxy
+      tag: v0.11.0
+
+  sidekick:
+    registryFQDN: ghcr.io
+    image:
+      registry: appscode
+      repository: sidekick
+      tag: ""
+
+  supervisor:
+    registryFQDN: ghcr.io
+    image:
+      registry: appscode
+      repository: supervisor
+      tag: ""
+
+  kubedb-crd-manager:
+    registryFQDN: ghcr.io
+    image:
+      registry: kubedb
+      repository: kubedb-crd-manager
+      tag: ""
+
+
+  kubedb-provisioner:
+    registryFQDN: ghcr.io
+    operator:
+      registry: kubedb
+      repository: kubedb-provisioner
+      tag: ""
+    waitfor:
+      registry: appscode
+      repository: k8s-wait-for
+      tag: "v2.0"
+
+  kubedb-webhook-server:
+    registryFQDN: ghcr.io
+    server:
+      registry: kubedb
+      repository: kubedb-webhook-server
+      tag: ""
+
+  kubedb-ops-manager:
+    registryFQDN: ghcr.io
+    operator:
+      registry: kubedb
+      repository: kubedb-ops-manager
+      tag: ""
+    waitfor:
+      registry: appscode
+      repository: k8s-wait-for
+      tag: "v2.0"
+
+
+
+  kubedb-autoscaler:
+    registryFQDN: ghcr.io
+    operator:
+      registry: kubedb
+      repository: kubedb-autoscaler
+      tag: ""
+    waitfor:
+      registry: appscode
+      repository: k8s-wait-for
+      tag: "v2.0"
+
+
+  kubedb-schema-manager:
+    registryFQDN: ghcr.io
+    operator:
+      registry: kubedb
+      repository: kubedb-schema-manager
+      tag: ""
+    waitfor:
+      registry: appscode
+      repository: k8s-wait-for
+      tag: "v2.0"
+
+
+  kubedb-metrics:
+    enabled: false
+  kubedb-catalog:
+    enabled: true
+  kubedb-kubestash-catalog:
+    enabled: false
+
+
+
+petset:
+  registryFQDN: ghcr.io
+  operator:
+    registry: appscode
+    repository: petset
+    tag: ""
+  rbacproxy:
+    registry: appscode
+    repository: kube-rbac-proxy
+    tag: v0.11.0
+
+sidekick:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: sidekick
+    tag: ""
+
+
+supervisor:
+  registryFQDN: ghcr.io
+  image:
+    registry: appscode
+    repository: supervisor
+    tag: ""
+
+
+
+
+kubedb-autoscaler:
+  registryFQDN: ghcr.io
+  operator:
+    registry: kubedb
+    repository: kubedb-autoscaler
+    tag: ""
+  waitfor:
+    registry: appscode
+    repository: k8s-wait-for
+    tag: "v2.0"
+
+
+
+
+
+kubedb-crd-manager:
+  registryFQDN: ghcr.io
+  image:
+    registry: kubedb
+    repository: kubedb-crd-manager
+    tag: ""
+
+
+kubedb-ops-manager:
+  registryFQDN: ghcr.io
+  operator:
+    registry: kubedb
+    repository: kubedb-ops-manager
+    tag: ""
+  waitfor:
+    registry: appscode
+    repository: k8s-wait-for
+    tag: "v2.0"
+
+
+
+
+
+kubedb-opscenter:
+  global:
+    registry: ""
+    registryFQDN: ghcr.io
+  kubedb-metrics:
+    enabled: true
+  kubedb-ui-server:
+    enabled: true
+  kubedb-grafana-dashboards:
+    enabled: true
+
+
+
+kubedb-provisioner:
+  registryFQDN: ghcr.io
+  operator:
+    registry: kubedb
+    repository: kubedb-provisioner
+    tag: ""
+  waitfor:
+    registry: appscode
+    repository: k8s-wait-for
+    tag: "v2.0"
+
+kubedb-schema-manager:
+  registryFQDN: ghcr.io
+  operator:
+    registry: kubedb
+    repository: kubedb-schema-manager
+    tag: ""
+  waitfor:
+    registry: appscode
+    repository: k8s-wait-for
+    tag: "v2.0"
+
+kubedb-ui-server:
+  registryFQDN: ghcr.io
+  image:
+    registry: kubedb
+    repository: kubedb-ui-server
+    tag: ""
+
+kubedb-webhook-server:
+  registryFQDN: ghcr.io
+  server:
+    registry: kubedb
+    repository: kubedb-webhook-server
+    tag: ""
