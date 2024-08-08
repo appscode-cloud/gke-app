@@ -11,6 +11,10 @@ apt-get -y update
 apt upgrade -y
 
 
+#variables
+BUCKET_NAME=""
+PUBLIC_IP=""
+
 install_gcloud() {
     echo "Installing Google Cloud SDK..."
 
@@ -38,7 +42,79 @@ create_bucket() {
         echo "Bucket $BUCKET_NAME created successfully."
     else
         echo "Failed to create bucket $BUCKET_NAME."
+        exit
     fi
+}
+
+webhook() {
+
+    resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/aws/notification/resource?secret=vstktmgwvkxyrsrfmt5tr0i66qpxkeoeaejjr3gyxkeywkm/00kyfahzvxjkfyb/qn5tgxgt9s/xb6vsamhh4w== \
+        -H "Content-Type: application/json" \
+        -d '{
+              "eventType": "BIND",
+              "accountId": "'${ACCOUNT_ID}'",
+              "bindingInfo": {
+                "installerID": "'${INSTALLER_ID}'",
+                "options": {
+                  "infra": {
+                    "dns": {
+                      "provider": "none",
+                      "targetIPs": ["'${PUBLIC_IP}'"]
+                    },
+                    "cloudServices": {
+                      "objstore": {
+                        "auth": {
+                          "s3": {
+                            "AWS_ACCESS_KEY_ID": "'${AWS_ACCESS_KEY_ID}'",
+                            "AWS_SECRET_ACCESS_KEY": "'${AWS_SECRET_ACCESS_KEY}'"
+                          }
+                        },
+                        "bucket": "s3://'${BUCKET_NAME}'?s3ForcePathStyle=true",
+                        "endpoint": "s3.amazonaws.com",
+                        "prefix": "ace",
+                        "region": "'${REGION}'"
+                      },
+                      "provider": "s3"
+                    },
+                    "kubestash": {
+                      "backend": {
+                        "provider": "s3",
+                        "s3": {
+                          "bucket": "s3://'${BUCKET_NAME}'",
+                          "endpoint": "s3.amazonaws.com",
+                          "prefix": "ace",
+                          "region": "'${REGION}'"
+                        }
+                      },
+                      "retentionPolicy": "keep-1mo",
+                      "schedule": "0 */2 * * *",
+                      "storageSecret": {
+                        "create": true
+                      }
+                    }
+                  },
+                  "initialSetup": {
+                    "cluster": {
+                      "region": "'${REGION}'"
+                    },
+                    "subscription": {
+                      "aws": {
+                        "customer-identifier": "demo-customer-identifier"
+                      }
+                    }
+                  }
+                }
+              }
+            }')
+
+    link=$(echo ${resp} | jq -r '.link')
+    if [ ${link} == "null" ]; then   exit ; fi
+
+    mkdir new
+    cd new
+    curl -L "${link}" -o "archive.zip"
+    unzip archive.zip >/dev/null
+    cd ..
 }
 
 init(){
