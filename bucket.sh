@@ -14,6 +14,7 @@ apt upgrade -y
 #variables
 BUCKET_NAME=""
 PUBLIC_IP=""
+GOOGLE_APPLICATION_CREDENTIALS_STRING=$(cat ${GOOGLE_APPLICATION_CREDENTIALS})
 
 install_gcloud() {
     echo "Installing Google Cloud SDK..."
@@ -46,13 +47,15 @@ create_bucket() {
     fi
 }
 
-webhook() {
+create_static_public_ip() {
 
+}
+
+webhook_api() {
     resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/aws/notification/resource?secret=vstktmgwvkxyrsrfmt5tr0i66qpxkeoeaejjr3gyxkeywkm/00kyfahzvxjkfyb/qn5tgxgt9s/xb6vsamhh4w== \
         -H "Content-Type: application/json" \
         -d '{
               "eventType": "BIND",
-              "accountId": "'${ACCOUNT_ID}'",
               "bindingInfo": {
                 "installerID": "'${INSTALLER_ID}'",
                 "options": {
@@ -64,42 +67,28 @@ webhook() {
                     "cloudServices": {
                       "objstore": {
                         "auth": {
-                          "s3": {
-                            "AWS_ACCESS_KEY_ID": "'${AWS_ACCESS_KEY_ID}'",
-                            "AWS_SECRET_ACCESS_KEY": "'${AWS_SECRET_ACCESS_KEY}'"
+                          "gcs": {
+                            "GOOGLE_PROJECT_ID": "'${GCP_PROJECT}'",
+                            "GOOGLE_SERVICE_ACCOUNT_JSON_KEY": "'${GOOGLE_APPLICATION_CREDENTIALS_STRING}'"
                           }
                         },
-                        "bucket": "s3://'${BUCKET_NAME}'?s3ForcePathStyle=true",
-                        "endpoint": "s3.amazonaws.com",
-                        "prefix": "ace",
-                        "region": "'${REGION}'"
+                        "bucket": "gs://'${BUCKET_NAME}'",
+                        "prefix": "ace"
                       },
-                      "provider": "s3"
+                      "provider": "gcs"
                     },
                     "kubestash": {
                       "backend": {
-                        "provider": "s3",
-                        "s3": {
-                          "bucket": "s3://'${BUCKET_NAME}'",
-                          "endpoint": "s3.amazonaws.com",
-                          "prefix": "ace",
-                          "region": "'${REGION}'"
-                        }
+                        "gcs": {
+                          "bucket": "gs://'${BUCKET_NAME}'",
+                          "prefix": "ace"
+                        },
+                        "provider": "gcs"
                       },
                       "retentionPolicy": "keep-1mo",
                       "schedule": "0 */2 * * *",
                       "storageSecret": {
                         "create": true
-                      }
-                    }
-                  },
-                  "initialSetup": {
-                    "cluster": {
-                      "region": "'${REGION}'"
-                    },
-                    "subscription": {
-                      "aws": {
-                        "customer-identifier": "demo-customer-identifier"
                       }
                     }
                   }
@@ -119,5 +108,7 @@ webhook() {
 
 init(){
     create_bucket
+    create_static_public_ip
+    webhook_api
 }
 init

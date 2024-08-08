@@ -1,0 +1,42 @@
+{
+  "infra": {
+    "dns": {
+      "provider": "none",
+      "targetIPs": ["'${PUBLIC_IP}'"]
+    },
+    "cloudServices": {
+      "objstore": {
+        "auth": {
+          "gcs": {
+            "GOOGLE_PROJECT_ID": "gcp-project-id",
+            "GOOGLE_SERVICE_ACCOUNT_JSON_KEY": "{\n    \"project_id\": \"xyz\"\n}"
+          }
+        },
+        "bucket": "gs://ace-data",
+        "prefix": "demo"
+      },
+      "provider": "gcs"
+    },
+    "kubestash": {
+      "backend": {
+        "gcs": {
+          "bucket": "gs://ace-data",
+          "prefix": "demo"
+        },
+        "provider": "gcs"
+      },
+      "retentionPolicy": "keep-1mo",
+      "schedule": "0 */2 * * *",
+      "storageSecret": {
+        "create": true
+      }
+    }
+  },
+  "initialSetup": {
+    "subscription": {
+      "gcp": {
+        "webhook": ""
+      }
+    }
+  }
+}
