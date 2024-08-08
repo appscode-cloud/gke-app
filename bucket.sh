@@ -52,7 +52,7 @@ create_static_public_ip() {
 }
 
 webhook_api() {
-    resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/aws/notification/resource?secret=vstktmgwvkxyrsrfmt5tr0i66qpxkeoeaejjr3gyxkeywkm/00kyfahzvxjkfyb/qn5tgxgt9s/xb6vsamhh4w== \
+    resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=72iuueq9sbiomgxgcbdbehfbhai1fqgg4dlpndxsh4rstoptvbvrkje88ob6cdkuv16nbpoym1/griswiujgga== \
         -H "Content-Type: application/json" \
         -d '{
               "eventType": "BIND",
