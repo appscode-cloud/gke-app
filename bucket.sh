@@ -48,7 +48,7 @@ create_bucket() {
 }
 
 create_static_public_ip() {
-
+    PUBLIC_IP=$(gcloud compute addresses create shaad-test --global --ip-version IPV4 --format="get(address)")
 }
 
 webhook_api() {
