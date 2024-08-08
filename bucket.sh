@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -xeo pipefail
+set -exo pipefail
 
 export DEBIAN_FRONTEND="noninteractive"
 export GCP_PROJECT="appscode-testing"
@@ -9,12 +9,14 @@ export REGION="us-central1"
 
 apt-get -y update
 apt upgrade -y
+apt-get install jq unzip -y >/dev/null
 
 
 #variables
 BUCKET_NAME=""
 PUBLIC_IP=""
-GOOGLE_APPLICATION_CREDENTIALS_STRING=$(cat ${GOOGLE_APPLICATION_CREDENTIALS})
+RAND=""
+GOOGLE_APPLICATION_CREDENTIALS_STRING=$(cat $GOOGLE_APPLICATION_CREDENTIALS | base64 -w 0)
 
 install_gcloud() {
     echo "Installing Google Cloud SDK..."
@@ -26,7 +28,7 @@ install_gcloud() {
     sudo apt-get update && sudo apt-get install google-cloud-sdk -y >/dev/null
 }
 setup_gcloud(){
-    apt-get install jq -y >/dev/null
+
     gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
     gcloud config set project "$GCP_PROJECT"
 }
@@ -48,7 +50,7 @@ create_bucket() {
 }
 
 create_static_public_ip() {
-    PUBLIC_IP=$(gcloud compute addresses create shaad-test --global --ip-version IPV4 --format="get(address)")
+    PUBLIC_IP=$(gcloud compute addresses create "ace-ip-$RAND" --global --ip-version IPV4 --format="get(address)")
 }
 
 webhook_api() {
@@ -112,3 +114,4 @@ init(){
     webhook_api
 }
 init
+
