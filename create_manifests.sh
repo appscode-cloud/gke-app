@@ -16,18 +16,17 @@
 
 set -eox pipefail
 
-for i in "$@"
-do
-case $i in
-  --mode=*)
-    mode="${i#*=}"
-    shift
-    ;;
-  *)
-    >&2 echo "Unrecognized flag: $i"
-    exit 1
-    ;;
-esac
+for i in "$@"; do
+  case $i in
+    --mode=*)
+      mode="${i#*=}"
+      shift
+      ;;
+    *)
+      >&2 echo "Unrecognized flag: $i"
+      exit 1
+      ;;
+  esac
 done
 
 [[ -z "$NAME" ]] && echo "NAME must be set" && exit 1
@@ -49,7 +48,6 @@ function extract_manifest() {
   extracted="$data/extracted"
   data_chart="$data/chart"
   mkdir -p "$extracted"
-
 
   # Expand the chart template.
   if [[ -d "$data_chart" ]]; then
@@ -74,8 +72,8 @@ if [[ "$mode" = "test" ]]; then
 
   overlay_test_files.py \
     --manifest "$data_dir/extracted" \
-    --test_manifest "$test_data_dir/extracted" \
-    | awk '{print "SMOKE_TEST "$0}'
+    --test_manifest "$test_data_dir/extracted" |
+    awk '{print "SMOKE_TEST "$0}'
 fi
 
 # Log information and, at the same time, catch errors early and separately.
@@ -86,24 +84,24 @@ echo "=== values.yaml ==="
 echo "==================="
 
 echo "=== download installer archive ==="
-installerURL=$(/bin/print_config.py --output=yaml \
-  | python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["installerURL"])')
+installerURL=$(/bin/print_config.py --output=yaml |
+  python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["installerURL"])')
 wget $installerURL
 tar -xzvf archive.tar.gz
 
 # Run helm expansion.
 for chart in "$data_dir/extracted"/*; do
-  /bin/print_config.py --output=yaml \
-    | python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(yaml.dump(y["flux2"], default_flow_style=False))' > flux-overrides.yaml
-  ymerge ./flux-values.yaml ./flux-overrides.yaml > flux-merged.yaml
+  /bin/print_config.py --output=yaml |
+    python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(yaml.dump(y["flux2"], default_flow_style=False))' >flux-overrides.yaml
+  ymerge ./flux-values.yaml ./flux-overrides.yaml >flux-merged.yaml
 
   echo "=== flux-merged.yaml ==="
   cat flux-merged.yaml
   echo "==================="
 
-  /bin/print_config.py --output=yaml \
-    | python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(yaml.dump(y["ace-installer"], default_flow_style=False))' > installer-overrides.yaml
-  ymerge ./values.yaml "$chart/chart/installer-static-overrides.yaml" ./installer-overrides.yaml > installer-merged.yaml
+  /bin/print_config.py --output=yaml |
+    python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(yaml.dump(y["ace-installer"], default_flow_style=False))' >installer-overrides.yaml
+  ymerge ./values.yaml "$chart/chart/installer-static-overrides.yaml" ./installer-overrides.yaml >installer-merged.yaml
 
   echo "=== installer-merged.yaml ==="
   cat ./installer-merged.yaml
@@ -119,14 +117,14 @@ for chart in "$data_dir/extracted"/*; do
     --values="$chart/chart/static-overrides.yaml" \
     --set-file vcluster.init.helm[0].values=./flux-merged.yaml \
     --set-file vcluster.init.helm[1].values=./installer-merged.yaml \
-    > "$manifest_dir/$chart_manifest_file"
+    >"$manifest_dir/$chart_manifest_file"
 
   if [[ "$mode" != "test" ]]; then
     process_helm_hooks.py \
       --manifest "$manifest_dir/$chart_manifest_file"
   else
     process_helm_hooks.py --deploy_tests \
-     --manifest "$manifest_dir/$chart_manifest_file"
+      --manifest "$manifest_dir/$chart_manifest_file"
   fi
 
   ensure_k8s_apps_labels.py \

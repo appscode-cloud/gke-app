@@ -4,6 +4,11 @@ helm dependency update chart/ace-mp
 helm package chart/ace-mp
 helm push ace-mp-v2024.7.4.tgz oci://ghcr.io/appscode-charts
 
+## fmt
+
+```sh
+find . -path ./vendor -prune -o -name '*.sh' -exec shfmt -l -w -ci -i 2 {} \;
+```
 
 ## update vcluster chart
 
