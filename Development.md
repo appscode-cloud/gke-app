@@ -46,13 +46,23 @@ wget https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master
 
 ---
 
+## Bundle gcloud and curl cli
+
+Copy install commands from gcloud stable docker file
+
+- https://cloud.google.com/sdk/docs/downloads-docker#docker_image_options
+- https://github.com/GoogleCloudPlatform/cloud-sdk-docker/blob/master/stable/Dockerfile
+
+---
+
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
 export TAG=v0.1.202474
 
 git pull origin master
 
-docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG .
+docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
+--build-arg CLOUD_SDK_VERSION=484.0.0
 
 kubectl delete namespace ace
 kubectl create namespace ace
