@@ -84,10 +84,25 @@ echo "=== values.yaml ==="
 echo "==================="
 
 echo "=== download installer archive ==="
-installerURL=$(/bin/print_config.py --output=yaml |
+INSTALLER_URL=$(/bin/print_config.py --output=yaml |
   python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["installerURL"])')
-wget $installerURL
-tar -xzvf archive.tar.gz
+
+if [ "$SKIP_GCP" = true ]; then
+  wget $INSTALLER_URL
+  tar -xzvf archive.tar.gz
+else
+  wget $INSTALLER_URL
+  tar -xzvf archive.tar.gz
+
+  source ./env.sh
+  export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
+
+  source /bin/create_resources.sh
+  ace::gcp::setup_gcloud
+  ace::gcp::create_bucket
+  ace::gcp::create_static_public_ip
+  ace::gcp::finalize_installer
+fi
 
 # Run helm expansion.
 for chart in "$data_dir/extracted"/*; do

@@ -2,23 +2,23 @@
 
 set -exo pipefail
 
-export DEBIAN_FRONTEND="noninteractive"
-export GCP_PROJECT="appscode-testing"
-export GOOGLE_APPLICATION_CREDENTIALS=gcp-cred.json
-export REGION="us-central1"
-
-apt-get -y update
-apt upgrade -y
-apt-get install jq unzip -y >/dev/null
+export GCP_PROJECT=${GCP_PROJECT:-"appscode-testing"}
+export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS:-gcp-cred.json}
+export REGION=${REGION:-us-central1}
 
 #variables
 BUCKET_NAME=""
 PUBLIC_IP=""
-RAND=""
+RAND=$(head /dev/urandom | tr -dc 'a-z' | head -c 4)
 GOOGLE_APPLICATION_CREDENTIALS_STRING=$(cat $GOOGLE_APPLICATION_CREDENTIALS | base64 -w 0)
 
-install_gcloud() {
+function ace::gcp::install_gcloud() {
   echo "Installing Google Cloud SDK..."
+
+  export DEBIAN_FRONTEND="noninteractive"
+  apt-get -y update
+  apt upgrade -y
+  apt-get install jq unzip -y >/dev/null
 
   echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
   sudo apt-get install apt-transport-https ca-certificates gnupg -y
@@ -27,16 +27,13 @@ install_gcloud() {
   sudo apt-get update && sudo apt-get install google-cloud-sdk -y >/dev/null
 }
 
-setup_gcloud() {
+function ace::gcp::setup_gcloud() {
   gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
   gcloud config set project "$GCP_PROJECT"
 }
 
-create_bucket() {
-  RAND=$(head /dev/urandom | tr -dc 'a-z' | head -c 4)
+function ace::gcp::create_bucket() {
   BUCKET_NAME="ace-bucket-$RAND"
-  install_gcloud
-  setup_gcloud
   echo "Creating bucket: $BUCKET_NAME in project: $GCP_PROJECT and region: ${REGION}"
 
   gsutil mb -p "$GCP_PROJECT" -c STANDARD -l "${REGION}" gs://"$BUCKET_NAME"/
@@ -48,11 +45,11 @@ create_bucket() {
   fi
 }
 
-create_static_public_ip() {
+function ace::gcp::create_static_public_ip() {
   PUBLIC_IP=$(gcloud compute addresses create "ace-ip-$RAND" --global --ip-version IPV4 --format="get(address)")
 }
 
-webhook_api() {
+function ace::gcp::finalize_installer() {
   resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=72iuueq9sbiomgxgcbdbehfbhai1fqgg4dlpndxsh4rstoptvbvrkje88ob6cdkuv16nbpoym1/griswiujgga== \
     -H "Content-Type: application/json" \
     -d '{
@@ -100,16 +97,14 @@ webhook_api() {
   link=$(echo ${resp} | jq -r '.link')
   if [ ${link} == "null" ]; then exit; fi
 
-  mkdir new
-  cd new
   curl -L "${link}" -o "archive.zip"
   unzip archive.zip >/dev/null
-  cd ..
 }
 
-init() {
-  create_bucket
-  create_static_public_ip
-  webhook_api
+function ace::gcp::init() {
+  ace::gcp::install_gcloud
+  ace::gcp::setup_gcloud
+  ace::gcp::create_bucket
+  ace::gcp::create_static_public_ip
+  ace::gcp::finalize_installer
 }
-init
