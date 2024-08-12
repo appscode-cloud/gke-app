@@ -41,10 +41,6 @@ helm:
           registryFQDN: ""
         trickster:
           registryFQDN: ""
-    cert-manager:
-      values:
-        cainjector:
-          enabled: false
     external-dns-operator:
       values:
         registryFQDN: ""
@@ -85,7 +81,13 @@ helm:
       values:
         helm:
           releases:
+            capi-ops-manager:
+              values:
+                registryFQDN: ""
             catalog-manager:
+              values:
+                registryFQDN: ""
+            docker-machine-operator:
               values:
                 registryFQDN: ""
             external-dns-operator:
@@ -93,7 +95,10 @@ helm:
                 registryFQDN: ""
             grafana-operator:
               values:
-                registryFQDN: ghcr.io
+                registryFQDN: ""
+            kube-ui-server:
+              values:
+                registryFQDN: ""
             kubedb:
               values:
                 global:
@@ -147,7 +152,7 @@ helm:
                 registryFQDN: ""
             monitoring-operator:
               values:
-                registryFQDN: ghcr.io
+                registryFQDN: ""
             panopticon:
               values:
                 registryFQDN: ""

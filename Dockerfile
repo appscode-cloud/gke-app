@@ -32,10 +32,6 @@ FROM gcr.io/cloud-marketplace-tools/k8s/deployer_helm/onbuild
 ARG SKIP_GCP
 ENV SKIP_GCP=$SKIP_GCP
 
-COPY --from=builder /ymerge /bin/ymerge
-COPY create_manifests.sh /bin/create_manifests.sh
-COPY create_resources.sh /bin/create_resources.sh
-
 # https://github.com/GoogleCloudPlatform/cloud-sdk-docker/blob/0767e4f8324c664412b39529d5641bab54a7ef5a/stable/Dockerfile#L22C1-L39C25
 COPY --from=builder /usr/lib/google-cloud-sdk /usr/lib/google-cloud-sdk
 
@@ -55,6 +51,10 @@ RUN gcloud --version && \
     find / -name '*.pyc' -delete && \
     find / -name '*__pycache__*' -exec rm -r {} \+
 VOLUME ["/root/.config"]
+
+COPY --from=builder /ymerge /bin/ymerge
+COPY create_manifests.sh /bin/create_manifests.sh
+COPY create_resources.sh /bin/create_resources.sh
 
 RUN set -x \
   && apt-get update \

@@ -1,219 +1,167 @@
-
-
-
-kubedb:
-  global:
-    registry: ""
-    registryFQDN: ""
-  petset:
-    registryFQDN: ghcr.io
-    operator:
-      registry: appscode
-      repository: petset
-      tag: ""
-    rbacproxy:
-      registry: appscode
-      repository: kube-rbac-proxy
-      tag: v0.11.0
-
-  sidekick:
-    registryFQDN: ghcr.io
-    image:
-      registry: appscode
-      repository: sidekick
-      tag: ""
-
-  supervisor:
-    registryFQDN: ghcr.io
-    image:
-      registry: appscode
-      repository: supervisor
-      tag: ""
-
-  kubedb-crd-manager:
-    registryFQDN: ghcr.io
-    image:
-      registry: kubedb
-      repository: kubedb-crd-manager
-      tag: ""
-
-
-  kubedb-provisioner:
-    registryFQDN: ghcr.io
-    operator:
-      registry: kubedb
-      repository: kubedb-provisioner
-      tag: ""
-    waitfor:
-      registry: appscode
-      repository: k8s-wait-for
-      tag: "v2.0"
-
-  kubedb-webhook-server:
-    registryFQDN: ghcr.io
-    server:
-      registry: kubedb
-      repository: kubedb-webhook-server
-      tag: ""
-
-  kubedb-ops-manager:
-    registryFQDN: ghcr.io
-    operator:
-      registry: kubedb
-      repository: kubedb-ops-manager
-      tag: ""
-    waitfor:
-      registry: appscode
-      repository: k8s-wait-for
-      tag: "v2.0"
-
-
-
-  kubedb-autoscaler:
-    registryFQDN: ghcr.io
-    operator:
-      registry: kubedb
-      repository: kubedb-autoscaler
-      tag: ""
-    waitfor:
-      registry: appscode
-      repository: k8s-wait-for
-      tag: "v2.0"
-
-
-  kubedb-schema-manager:
-    registryFQDN: ghcr.io
-    operator:
-      registry: kubedb
-      repository: kubedb-schema-manager
-      tag: ""
-    waitfor:
-      registry: appscode
-      repository: k8s-wait-for
-      tag: "v2.0"
-
-
-  kubedb-metrics:
-    enabled: false
-  kubedb-catalog:
-    enabled: true
-  kubedb-kubestash-catalog:
-    enabled: false
-
-
-
-petset:
-  registryFQDN: ghcr.io
-  operator:
-    registry: appscode
-    repository: petset
-    tag: ""
-  rbacproxy:
-    registry: appscode
-    repository: kube-rbac-proxy
-    tag: v0.11.0
-
-sidekick:
-  registryFQDN: ghcr.io
-  image:
-    registry: appscode
-    repository: sidekick
-    tag: ""
-
-
-supervisor:
-  registryFQDN: ghcr.io
-  image:
-    registry: appscode
-    repository: supervisor
-    tag: ""
-
-
-
-
+global:
+  imagePullSecrets: []
+  registry: ""
+  registryFQDN: ""
 kubedb-autoscaler:
-  registryFQDN: ghcr.io
+  enabled: true
   operator:
-    registry: kubedb
-    repository: kubedb-autoscaler
-    tag: ""
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-autoscaler
+    tag: 0.1.20240704
+  registryFQDN: ""
   waitfor:
-    registry: appscode
-    repository: k8s-wait-for
-    tag: "v2.0"
-
-
-
-
-
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/k8s-wait-for
+    tag: 0.1.20240704
+kubedb-catalog:
+  customVersions:
+    pgversion:
+      apiVersion: catalog.kubedb.com/v1alpha1
+      kind: PostgresVersion
+      metadata:
+        name: 15.5-gcp-mp
+      spec:
+        archiver:
+          addon:
+            name: postgres-addon
+            tasks:
+              manifestBackup:
+                name: manifest-backup
+              manifestRestore:
+                name: manifest-restore
+              volumeSnapshot:
+                name: volume-snapshot
+          walg:
+            image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-archiver:0.1.20240704
+        coordinator:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/pg-coordinator:0.1.20240704
+        db:
+          baseOS: alpine
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres:0.1.20240704
+        distribution: Official
+        exporter:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-exporter:0.1.20240704
+        initContainer:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-init:0.1.20240704
+        podSecurityPolicies:
+          databasePolicyName: postgres-db
+        securityContext:
+          runAsAnyNonRoot: false
+          runAsUser: 70
+        stash:
+          addon:
+            backupTask:
+              name: postgres-backup-15.1
+            restoreTask:
+              name: postgres-restore-15.1
+        updateConstraints:
+          allowlist:
+          - "14.2"
+        version: "15.5"
+    rdversion:
+      apiVersion: catalog.kubedb.com/v1alpha1
+      kind: RedisVersion
+      metadata:
+        name: 7.2.4-gcp-mp
+      spec:
+        coordinator:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-coordinator:0.1.20240704
+        db:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis:0.1.20240704
+        exporter:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis_exporter:0.1.20240704
+        initContainer:
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-init:0.1.20240704
+        podSecurityPolicies:
+          databasePolicyName: redis-db
+        securityContext:
+          runAsUser: 999
+        stash:
+          addon:
+            backupTask:
+              name: redis-backup-7.0.5
+            restoreTask:
+              name: redis-restore-7.0.5
+        version: 7.2.4
+  enabled: true
+  proxies:
+    appscode: r.appscode.com
+    dockerHub: ""
+    dockerLibrary: ""
+    ghcr: ghcr.io
+    kubernetes: registry.k8s.io
+    quay: quay.io
 kubedb-crd-manager:
-  registryFQDN: ghcr.io
   image:
-    registry: kubedb
-    repository: kubedb-crd-manager
-    tag: ""
-
-
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-crd-manager
+    tag: 0.1.20240704
+  registryFQDN: ""
+kubedb-dashboard:
+  enabled: false
+kubedb-kubestash-catalog:
+  enabled: true
+kubedb-metrics:
+  enabled: false
 kubedb-ops-manager:
-  registryFQDN: ghcr.io
+  enabled: true
   operator:
-    registry: kubedb
-    repository: kubedb-ops-manager
-    tag: ""
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-ops-manager
+    tag: 0.1.20240704
+  registryFQDN: ""
   waitfor:
-    registry: appscode
-    repository: k8s-wait-for
-    tag: "v2.0"
-
-
-
-
-
-kubedb-opscenter:
-  global:
-    registry: ""
-    registryFQDN: ghcr.io
-  kubedb-metrics:
-    enabled: true
-  kubedb-ui-server:
-    enabled: true
-  kubedb-grafana-dashboards:
-    enabled: true
-
-
-
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/k8s-wait-for
+    tag: 0.1.20240704
 kubedb-provisioner:
-  registryFQDN: ghcr.io
+  enabled: true
   operator:
-    registry: kubedb
-    repository: kubedb-provisioner
-    tag: ""
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-provisioner
+    tag: 0.1.20240704
+  registryFQDN: ""
   waitfor:
-    registry: appscode
-    repository: k8s-wait-for
-    tag: "v2.0"
-
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/k8s-wait-for
+    tag: 0.1.20240704
 kubedb-schema-manager:
-  registryFQDN: ghcr.io
+  enabled: false
   operator:
-    registry: kubedb
-    repository: kubedb-schema-manager
-    tag: ""
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-schema-manager
+    tag: 0.1.20240704
+  registryFQDN: ""
   waitfor:
-    registry: appscode
-    repository: k8s-wait-for
-    tag: "v2.0"
-
-kubedb-ui-server:
-  registryFQDN: ghcr.io
-  image:
-    registry: kubedb
-    repository: kubedb-ui-server
-    tag: ""
-
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/k8s-wait-for
+    tag: 0.1.20240704
 kubedb-webhook-server:
-  registryFQDN: ghcr.io
+  registryFQDN: ""
   server:
-    registry: kubedb
-    repository: kubedb-webhook-server
-    tag: ""
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kubedb-webhook-server
+    tag: 0.1.20240704
+petset:
+  operator:
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/petset
+    tag: 0.1.20240704
+  rbacproxy:
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/kube-rbac-proxy
+    tag: 0.1.20240704
+  registryFQDN: ""
+sidekick:
+  enabled: false
+  image:
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/sidekick
+    tag: 0.1.20240704
+  registryFQDN: ""
+supervisor:
+  image:
+    registry: ghcr.io
+    repository: appscode-gcp-mp/ace-mp/supervisor
+    tag: 0.1.20240704
+  registryFQDN: ""

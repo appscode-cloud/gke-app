@@ -868,6 +868,98 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus-node-exporter.image.tag:
           type: TAG
 
+    kubedb-ui-server:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.tag:
+          type: TAG
+
+    capi-ops-manager:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.tag:
+          type: TAG
+
+    docker-machine-operator:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.tag:
+          type: TAG
+
+    kube-ui-server:
+      properties:
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-ui-server.values.image.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-ui-server.values.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-ui-server.values.image.tag:
+          type: TAG
+
+    postgres-archiver:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.archiver.walg.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.archiver.walg.image:
+          type: FULL
+    pg-coordinator:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.coordinator.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.coordinator.image:
+          type: FULL
+    postgres:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.db.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.db.image:
+          type: FULL
+    postgres-exporter:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.exporter.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.exporter.image:
+          type: FULL
+    postgres-init:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.initContainer.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.pgversion.spec.initContainer.image:
+          type: FULL
+
+    redis-coordinator:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.coordinator.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.coordinator.image:
+          type: FULL
+    redis:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.db.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.db.image:
+          type: FULL
+    redis_exporter:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.exporter.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.exporter.image:
+          type: FULL
+    redis-init:
+      properties:
+        ace-installer.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.initContainer.image:
+          type: FULL
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-catalog.customVersions.rdversion.spec.initContainer.image:
+          type: FULL
+
   deployerServiceAccount:
     description:
       Creates app resources including crds.

@@ -64,7 +64,9 @@ export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
 export TAG=v0.1.202474
 
-git pull origin master
+git fetch origin
+git checkout master
+git reset --hard origin/master
 
 docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
 --build-arg CLOUD_SDK_VERSION=484.0.0 \
@@ -75,7 +77,7 @@ kubectl create namespace ace
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "installerURL": "https://appscode.com/links/installer/332800/gcp-mp/cqr1mlj4kpgs73ds479g-wr8sfnb4sc/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "installerURL": "https://appscode.com/links/installer/332800/gcp-mp/cqtaa491k13s73ef9nd0-b96wkd5bch/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 
