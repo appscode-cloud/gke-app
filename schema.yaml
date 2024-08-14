@@ -995,6 +995,11 @@ properties:
       type: NAMESPACE
   installerURL:
     type: string
+  # https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/billing-integration.md
+  reportingSecret:
+    type: string
+    x-google-marketplace:
+      type: REPORTING_SECRET
   # https://www.vcluster.com/docs/v0.19/networking/coreDNS#fallback-to-host-dns
   vcluster.fallbackHostDns:
     type: boolean

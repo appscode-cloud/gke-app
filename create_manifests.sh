@@ -83,6 +83,28 @@ echo "=== values.yaml ==="
 /bin/print_config.py --output=yaml
 echo "==================="
 
+echo "=== prepare reporting secret values ==="
+REPORTING_SECRET=$(/bin/print_config.py --output=yaml |
+  python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["reportingSecret"])')
+cat >plugin-config.yaml <<EOF
+vcluster:
+  plugin:
+    vcluster-plugin:
+      config:
+        reportingSecret: "${REPORTING_SECRET}"
+EOF
+cat >reportingsecret-values.yaml <<EOF
+helm:
+  releases:
+    ace:
+      enabled: true
+      values:
+        platform-api:
+          settings:
+            secretName:
+              gcpMarketplaceReportingSecret: "${REPORTING_SECRET}"
+EOF
+
 echo "=== download installer archive ==="
 INSTALLER_URL=$(/bin/print_config.py --output=yaml |
   python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["installerURL"])')
@@ -116,7 +138,7 @@ for chart in "$data_dir/extracted"/*; do
 
   /bin/print_config.py --output=yaml |
     python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(yaml.dump(y["ace-installer"], default_flow_style=False))' >installer-overrides.yaml
-  ymerge ./values.yaml "$chart/chart/installer-static-overrides.yaml" ./installer-overrides.yaml >installer-merged.yaml
+  ymerge ./values.yaml ./reportingsecret-values.yaml "$chart/chart/installer-static-overrides.yaml" ./installer-overrides.yaml >installer-merged.yaml
 
   echo "=== installer-merged.yaml ==="
   cat ./installer-merged.yaml
@@ -127,6 +149,7 @@ for chart in "$data_dir/extracted"/*; do
     --namespace="$NAMESPACE" \
     --include-crds \
     --values=./plugin.yaml \
+    --values=./plugin-config.yaml \
     --values=./ace-mp.yaml \
     --values=<(/bin/print_config.py --output=yaml) \
     --values="$chart/chart/static-overrides.yaml" \
