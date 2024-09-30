@@ -6,7 +6,7 @@ cert-manager-csi-driver-cacerts:
 
 vcluster:
   enabled: true
-  fallbackHostDns: false
+  # fallbackHostDns: false
   # # https://www.vcluster.com/docs/v0.19/o11y/metrics/metrics_server_proxy#enabling-the-metrics-server-proxy-recommended
   # proxy:
   #   metricsServer:
@@ -14,20 +14,31 @@ vcluster:
   #       enabled: true
   #     pods:
   #       enabled: true
+  controlPlane:
+    statefulSet:
+      security:
+        podSecurityContext:
+          fsGroup: 65534
+        containerSecurityContext:
+          runAsUser: 65534
+          runAsNonRoot: true
+      resources:
+        limits:
+          ephemeral-storage: 8Gi
+          memory: 8Gi
+        requests:
+          ephemeral-storage: 1Gi
+          cpu: 200m
+          memory: 3.5Gi
   sync:
-    # https://www.vcluster.com/docs/v0.19/o11y/metrics/metrics_server
-    nodes:
-      enabled: true
-    hoststorageclasses:
-      enabled: true
-  syncer:
-    resources:
-      limits:
-        ephemeral-storage: 8Gi
-        memory: 8Gi
-      requests:
-        ephemeral-storage: 1Gi
-        cpu: 200m
-        memory: 3.5Gi
+    # persistentvolumes:
+    #   enabled: true
+    # If you want to create custom storage classes
+    # inside the vcluster.
+    fromHost:
+      nodes:
+        enabled: true
+      storageClasses:
+        enabled: true
   telemetry:
-    disabled: true
+    enabled: false

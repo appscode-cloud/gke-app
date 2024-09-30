@@ -2,8 +2,8 @@ dependencies:
 - name: cert-manager-csi-driver-cacerts
   repository: oci://ghcr.io/appscode-charts
   version: v2024.7.28
-- name: vcluster-k0s
+- name: vcluster
   repository: oci://ghcr.io/appscode-charts
-  version: 0.19.7
-digest: sha256:b7f89180b77d15aa03ae62977a6cce40633fc58400dff2656656dbae1eae7c79
-generated: "2024-07-28T11:18:21.063777-04:00"
+  version: 0.20.0
+digest: sha256:869110a81639ee208bfda5a0c3ba490bb09de0c57d50bff42f37851a3276adc7
+generated: "2024-09-29T21:43:52.31216-07:00"

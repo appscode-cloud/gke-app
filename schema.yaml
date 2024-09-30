@@ -35,25 +35,41 @@ x-google-marketplace:
           type: REPO_WITHOUT_REGISTRY
         cert-manager-csi-driver-cacerts.livenessProbe.tag:
           type: TAG
+    alpine:
+      properties:
+        vcluster.sync.toHost.pods.rewriteHosts.initContainer.image:
+          type: FULL
+    kube-apiserver:
+      properties:
+        controlPlane.distro.k8s.apiServer.image.registry:
+          type: REGISTRY
+        controlPlane.distro.k8s.apiServer.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        controlPlane.distro.k8s.apiServer.image.tag:
+          type: TAG
+    kube-controller-manager:
+      properties:
+        controlPlane.distro.k8s.controllerManager.image.registry:
+          type: REGISTRY
+        controlPlane.distro.k8s.controllerManager.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        controlPlane.distro.k8s.controllerManager.image.tag:
+          type: TAG
     coredns:
       properties:
-        vcluster.coredns.image:
+        vcluster.controlPlane.coredns.image:
           type: FULL
-    k0s:
+    vcluster-oss:
       properties:
-        vcluster.vcluster.image:
-          type: FULL
+        controlPlane.statefulSet.image.registry:
+          type: REGISTRY
+        controlPlane.statefulSet.image.repository:
+          type: REPO_WITHOUT_REGISTRY
+        controlPlane.statefulSet.image.tag:
+          type: TAG
     vcluster-plugin:
       properties:
         vcluster.plugin.vcluster-plugin.image:
-          type: FULL
-    vcluster:
-      properties:
-        vcluster.syncer.image:
-          type: FULL
-    alpine:
-      properties:
-        vcluster.syncer.overrideHostsContainerImage:
           type: FULL
 
     # fluxcd

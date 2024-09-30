@@ -1,0 +1,40 @@
+sync:
+  toHost:
+    pods:
+      rewriteHosts:
+        initContainer:
+          image: "alpine:3.20"
+controlPlane:
+  distro:
+    k8s:
+      apiServer:
+        image:
+          registry: registry.k8s.io
+          repository: kube-apiserver
+          tag: "v1.30.2"
+      controllerManager:
+        image:
+          registry: registry.k8s.io
+          repository: "kube-controller-manager"
+          tag: "v1.30.2"
+      scheduler:
+        image:
+          registry: registry.k8s.io
+          repository: "kube-scheduler"
+          tag: "v1.30.2"
+  backingStore:
+    etcd:
+      deploy:
+        statefulSet:
+          image:
+            registry: "registry.k8s.io"
+            repository: "etcd"
+            tag: "3.5.13-0"
+  coredns:
+    deployment:
+      image: ""
+
+  statefulSet:
+    image:
+      registry: "ghcr.io"
+      repository: "loft-sh/vcluster-oss"
