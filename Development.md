@@ -2,7 +2,7 @@
 
 helm dependency update chart/ace-mp
 helm package chart/ace-mp
-helm push ace-mp-v2024.7.4.tgz oci://ghcr.io/appscode-charts
+helm push ace-mp-v2024.9.30.tgz oci://ghcr.io/appscode-charts
 
 ## fmt
 
