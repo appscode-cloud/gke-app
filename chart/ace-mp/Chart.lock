@@ -5,5 +5,5 @@ dependencies:
 - name: vcluster
   repository: oci://ghcr.io/appscode-charts
   version: 0.20.0
-digest: sha256:869110a81639ee208bfda5a0c3ba490bb09de0c57d50bff42f37851a3276adc7
-generated: "2024-09-29T21:43:52.31216-07:00"
+digest: sha256:8312f1d0d1c1dcb60d2a9923f2676e16bf8cc14a93d08c8dfa4f776860705ce0
+generated: "2024-10-13T12:37:49.923055-07:00"

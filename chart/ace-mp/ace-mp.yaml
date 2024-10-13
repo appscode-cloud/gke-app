@@ -1,46 +1,50 @@
 vcluster:
-  # https://www.vcluster.com/docs/v0.19/using-vclusters/access#via-ingress
-  syncer:
-    extraArgs:
-    - --tls-san=gcp-mp-com-wrcuj.bytebuilders.xyz
-  # https://www.vcluster.com/docs/v0.19/deploying-vclusters/init-charts#upstream-mode
-  init:
-    helm:
-    - chart:
-        name: flux2
-        repo: oci://ghcr.io/appscode-charts
-        version: 2.13.0
-      release:
-        name: flux2
-        namespace: flux-system
-      values: |-
-        cli:
-          image: ghcr.io/appscode/flux-cli
-        helmController:
-          create: true
-          labels:
-            ace.appscode.com/managed: "true"
-        imageAutomationController:
-          create: false
-        imageReflectionController:
-          create: false
-        kustomizeController:
-          create: true
-          labels:
-            ace.appscode.com/managed: "true"
-        notificationController:
-          create: true
-          labels:
-            ace.appscode.com/managed: "true"
-        sourceController:
-          create: true
-          labels:
-            ace.appscode.com/managed: "true"
-    - chart:
-        name: ace-installer
-        repo: oci://ghcr.io/appscode-charts
-        version: v2024.10.7
-      release:
-        name: ace-installer
-        namespace: kubeops
-      # values: |-
+  # https://vcluster.com/docs/vcluster/configure/vcluster-yaml/control-plane/components/proxy
+  controlPlane:
+    proxy:
+      extraSANs:
+      - gcp-mp-com-wrcuj.bytebuilders.xyz
+
+  # https://vcluster.com/docs/vcluster/configure/vcluster-yaml/experimental/deploy#upstream-chart
+  experimental:
+    deploy:
+      vcluster:
+        helm:
+        - chart:
+            name: flux2
+            repo: oci://ghcr.io/appscode-charts
+            version: 2.13.0
+          release:
+            name: flux2
+            namespace: flux-system
+          values: |-
+            cli:
+              image: ghcr.io/appscode/flux-cli
+            helmController:
+              create: true
+              labels:
+                ace.appscode.com/managed: "true"
+            imageAutomationController:
+              create: false
+            imageReflectionController:
+              create: false
+            kustomizeController:
+              create: true
+              labels:
+                ace.appscode.com/managed: "true"
+            notificationController:
+              create: true
+              labels:
+                ace.appscode.com/managed: "true"
+            sourceController:
+              create: true
+              labels:
+                ace.appscode.com/managed: "true"
+        - chart:
+            name: ace-installer
+            repo: oci://ghcr.io/appscode-charts
+            version: v2024.10.7
+          release:
+            name: ace-installer
+            namespace: kubeops
+          # values: |-

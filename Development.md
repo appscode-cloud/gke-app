@@ -43,7 +43,39 @@ kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-too
 
 ## install vcluster cli
 
-curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.19.7/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
+curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.20.0/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
+
+
+## Prepare gcp-mp host
+
+- re/create k3s cluster
+- install vcluster
+
+- install docker
+- install gcloud cli
+
+- https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/mpdev-references.md
+
+```bash
+sudo su
+cd
+
+gcloud init
+gcloud auth configure-docker
+```
+
+- install mpdev
+
+```
+BIN_FILE="/usr/local/bin/mpdev"
+docker run \
+  gcr.io/cloud-marketplace-tools/k8s/dev \
+  cat /scripts/dev > "$BIN_FILE"
+chmod +x "$BIN_FILE"
+
+
+mpdev doctor
+```
 
 ---
 
@@ -62,7 +94,7 @@ Copy install commands from gcloud stable docker file
 
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
-export TAG=v0.1.20241007
+export TAG=0.1.20241007
 
 git fetch origin
 git checkout master

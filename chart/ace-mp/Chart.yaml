@@ -16,5 +16,4 @@ dependencies:
 - name: vcluster
   alias: vcluster
   repository: oci://ghcr.io/appscode-charts
-  condition: vcluster.enabled
   version: 0.20.0

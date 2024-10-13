@@ -5,7 +5,6 @@ cert-manager-csi-driver-cacerts:
   enabled: true
 
 vcluster:
-  enabled: true
   # fallbackHostDns: false
   # # https://www.vcluster.com/docs/v0.19/o11y/metrics/metrics_server_proxy#enabling-the-metrics-server-proxy-recommended
   # proxy:
