@@ -2,7 +2,7 @@
 
 helm dependency update chart/ace-mp
 helm package chart/ace-mp
-helm push ace-mp-v2024.9.30.tgz oci://ghcr.io/appscode-charts
+helm push ace-mp-v2024.10.7.tgz oci://ghcr.io/appscode-charts
 
 ## fmt
 
@@ -62,7 +62,7 @@ Copy install commands from gcloud stable docker file
 
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
-export TAG=v0.1.202474
+export TAG=v0.1.20241007
 
 git fetch origin
 git checkout master

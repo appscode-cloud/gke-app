@@ -25,9 +25,13 @@ vcluster:
         imageReflectionController:
           create: false
         kustomizeController:
-          create: false
+          create: true
+          labels:
+            ace.appscode.com/managed: "true"
         notificationController:
-          create: false
+          create: true
+          labels:
+            ace.appscode.com/managed: "true"
         sourceController:
           create: true
           labels:
@@ -35,7 +39,7 @@ vcluster:
     - chart:
         name: ace-installer
         repo: oci://ghcr.io/appscode-charts
-        version: v2024.7.4
+        version: v2024.10.7
       release:
         name: ace-installer
         namespace: kubeops
