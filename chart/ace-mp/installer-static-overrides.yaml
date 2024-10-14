@@ -49,6 +49,7 @@ helm:
         global:
           registry: ""
           registryFQDN: ""
+          waitForWebhook: false
         kubedb-autoscaler:
           registryFQDN: ""
         kubedb-crd-manager:
