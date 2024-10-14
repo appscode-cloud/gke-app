@@ -9,11 +9,6 @@ dependencies:
   repository: oci://ghcr.io/appscode-charts
   condition: cert-manager-csi-driver-cacerts.enabled
   version: v2024.7.28
-# - name: vcluster
-#   repository: oci://ghcr.io/appscode-charts
-#   condition: vcluster.enabled
-#   version: 0.19.7
 - name: vcluster
-  alias: vcluster
   repository: oci://ghcr.io/appscode-charts
   version: 0.20.0

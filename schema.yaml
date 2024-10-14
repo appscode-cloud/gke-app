@@ -569,8 +569,15 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.reloader.values.reloader.deployment.image.tag:
           type: TAG
 
-    kubectl:
+    kubectl-nonroot:
       properties:
+        ace-installer.helm.releases.ace.values.kubectl.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.ace.values.kubectl.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.ace.values.kubectl.tag:
+          type: TAG
+
         ace-installer.helm.releases.panopticon.values.cleaner.registry:
           type: REGISTRY
         ace-installer.helm.releases.panopticon.values.cleaner.repository:
