@@ -1,19 +1,19 @@
 acmesolver:
   image:
     repository: ghcr.io/appscode-gcp-mp/ace-mp/cert-manager-acmesolver
-    tag: 0.1.20240704
+    tag: 0.1.20241007
 cainjector:
   image:
     repository: ghcr.io/appscode-gcp-mp/ace-mp/cert-manager-cainjector
-    tag: 0.1.20240704
+    tag: 0.1.20241007
 image:
   repository: ghcr.io/appscode-gcp-mp/ace-mp/cert-manager-controller
-  tag: 0.1.20240704
+  tag: 0.1.20241007
 startupapicheck:
   image:
     repository: ghcr.io/appscode-gcp-mp/ace-mp/cert-manager-startupapicheck
-    tag: 0.1.20240704
+    tag: 0.1.20241007
 webhook:
   image:
     repository: ghcr.io/appscode-gcp-mp/ace-mp/cert-manager-webhook
-    tag: 0.1.20240704
+    tag: 0.1.20241007
