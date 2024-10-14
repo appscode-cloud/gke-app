@@ -2,8 +2,6 @@ helm:
   releases:
     ace:
       values:
-        setupJob:
-          ttlSecondsAfterFinished: 60
         billing:
           registryFQDN: ""
         cluster-ui:

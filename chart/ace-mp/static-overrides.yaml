@@ -1,2 +1,4 @@
 cert-manager-csi-driver-cacerts:
   registryFQDN: ""
+  rbac:
+    enableUserRoles: false
