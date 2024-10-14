@@ -1017,7 +1017,7 @@ properties:
     x-google-marketplace:
       type: REPORTING_SECRET
   # https://www.vcluster.com/docs/v0.19/networking/coreDNS#fallback-to-host-dns
-  vcluster.fallbackHostDns:
+  vcluster.networking.advanced.fallbackHostCluster:
     type: boolean
     x-google-marketplace:
       type: ISTIO_ENABLED
