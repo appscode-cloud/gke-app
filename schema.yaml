@@ -57,7 +57,7 @@ x-google-marketplace:
           type: TAG
     coredns:
       properties:
-        vcluster.controlPlane.coredns.image:
+        vcluster.controlPlane.coredns.deployment.image:
           type: FULL
     vcluster-oss:
       properties:

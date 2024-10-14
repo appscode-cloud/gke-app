@@ -153,8 +153,8 @@ for chart in "$data_dir/extracted"/*; do
     --values=./ace-mp.yaml \
     --values=<(/bin/print_config.py --output=yaml) \
     --values="$chart/chart/static-overrides.yaml" \
-    --set-file vcluster.init.helm[0].values=./flux-merged.yaml \
-    --set-file vcluster.init.helm[1].values=./installer-merged.yaml \
+    --set-file vcluster.experimental.deploy.vcluster.helm[0].values=./flux-merged.yaml \
+    --set-file vcluster.experimental.deploy.vcluster.helm[1].values=./installer-merged.yaml \
     >"$manifest_dir/$chart_manifest_file"
 
   if [[ "$mode" != "test" ]]; then
