@@ -41,19 +41,19 @@ x-google-marketplace:
           type: FULL
     kube-apiserver:
       properties:
-        controlPlane.distro.k8s.apiServer.image.registry:
+        vcluster.controlPlane.distro.k8s.apiServer.image.registry:
           type: REGISTRY
-        controlPlane.distro.k8s.apiServer.image.repository:
+        vcluster.controlPlane.distro.k8s.apiServer.image.repository:
           type: REPO_WITHOUT_REGISTRY
-        controlPlane.distro.k8s.apiServer.image.tag:
+        vcluster.controlPlane.distro.k8s.apiServer.image.tag:
           type: TAG
     kube-controller-manager:
       properties:
-        controlPlane.distro.k8s.controllerManager.image.registry:
+        vcluster.controlPlane.distro.k8s.controllerManager.image.registry:
           type: REGISTRY
-        controlPlane.distro.k8s.controllerManager.image.repository:
+        vcluster.controlPlane.distro.k8s.controllerManager.image.repository:
           type: REPO_WITHOUT_REGISTRY
-        controlPlane.distro.k8s.controllerManager.image.tag:
+        vcluster.controlPlane.distro.k8s.controllerManager.image.tag:
           type: TAG
     coredns:
       properties:
@@ -61,11 +61,11 @@ x-google-marketplace:
           type: FULL
     vcluster-oss:
       properties:
-        controlPlane.statefulSet.image.registry:
+        vcluster.controlPlane.statefulSet.image.registry:
           type: REGISTRY
-        controlPlane.statefulSet.image.repository:
+        vcluster.controlPlane.statefulSet.image.repository:
           type: REPO_WITHOUT_REGISTRY
-        controlPlane.statefulSet.image.tag:
+        vcluster.controlPlane.statefulSet.image.tag:
           type: TAG
     vcluster-plugin:
       properties:
