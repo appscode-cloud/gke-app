@@ -9,7 +9,7 @@ ace-installer:
           image:
             registry: ghcr.io
             repository: appscode-gcp-mp/ace-mp/license-proxyserver
-            tag: v0.1.20241017
+            tag: v0.20241017.0
       opscenter-features:
         values: {}
 
@@ -42,11 +42,11 @@ ace-installer:
                     envoyGateway:
                       image:
                         repository: ghcr.io/appscode-gcp-mp/ace-mp/gateway
-                        tag: v0.1.20241017
+                        tag: v0.20241017.0
                     kubeRbacProxy:
                       image:
                         repository: ghcr.io/appscode-gcp-mp/ace-mp/kube-rbac-proxy
-                        tag: v0.1.20241017
+                        tag: v0.20241017.0
 
               service-backend:
                 image:
@@ -63,4 +63,4 @@ ace-installer:
                 rbacproxy:
                   registry: ghcr.io
                   repository: appscode-gcp-mp/ace-mp/kube-rbac-proxy
-                  tag: v0.1.20241017
+                  tag: v0.20241017.0
