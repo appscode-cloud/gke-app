@@ -91,6 +91,18 @@ x-google-marketplace:
           type: REPO_WITH_REGISTRY
         flux2.sourceController.tag:
           type: TAG
+    flux-kustomize-controller:
+      properties:
+        flux2.kustomizeController.image:
+          type: REPO_WITH_REGISTRY
+        flux2.kustomizeController.tag:
+          type: TAG
+    flux-notification-controller:
+      properties:
+        flux2.notificationController.image:
+          type: REPO_WITH_REGISTRY
+        flux2.notificationController.tag:
+          type: TAG
 
     # ace-installer
     license-proxyserver:
@@ -463,65 +475,6 @@ x-google-marketplace:
 
     k8s-wait-for:
       properties:
-        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
-          type: TAG
-
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
-          type: TAG
-
-
-        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
-          type: TAG
-
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
-          type: TAG
-
-
-        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
-          type: TAG
-
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
-          type: TAG
-
-
-        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
-          type: TAG
-
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
-          type: TAG
-
         ace-installer.helm.releases.ace.values.openfga.initContainer.repository:
           type: REPO_WITH_REGISTRY
         ace-installer.helm.releases.ace.values.openfga.initContainer.tag:
@@ -592,6 +545,65 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.panopticon.values.cleaner.tag:
           type: TAG
 
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-provisioner.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-ops-manager.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-autoscaler.waitfor.tag:
+          type: TAG
+
+
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
+          type: TAG
+
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.registry:
+          type: REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.repository:
+          type: REPO_WITHOUT_REGISTRY
+        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb.values.kubedb-schema-manager.waitfor.tag:
+          type: TAG
+
     b3:
       properties:
         ace-installer.helm.releases.ace.values.image.registry:
@@ -642,14 +654,14 @@ x-google-marketplace:
         ace-installer.helm.releases.ace.values.cluster-ui.image.tag:
           type: TAG
 
-    deploy-ui:
-      properties:
-        ace-installer.helm.releases.ace.values.deploy-ui.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.ace.values.deploy-ui.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.ace.values.deploy-ui.image.tag:
-          type: TAG
+    # deploy-ui:
+    #   properties:
+    #     ace-installer.helm.releases.ace.values.deploy-ui.image.registry:
+    #       type: REGISTRY
+    #     ace-installer.helm.releases.ace.values.deploy-ui.image.repository:
+    #       type: REPO_WITHOUT_REGISTRY
+    #     ace-installer.helm.releases.ace.values.deploy-ui.image.tag:
+    #       type: TAG
 
     grafana:
       properties:
@@ -669,14 +681,14 @@ x-google-marketplace:
         ace-installer.helm.releases.ace.values.kubedb-ui.image.tag:
           type: TAG
 
-    marketplace-ui:
-      properties:
-        ace-installer.helm.releases.ace.values.marketplace-ui.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.ace.values.marketplace-ui.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.ace.values.marketplace-ui.image.tag:
-          type: TAG
+    # marketplace-ui:
+    #   properties:
+    #     ace-installer.helm.releases.ace.values.marketplace-ui.image.registry:
+    #       type: REGISTRY
+    #     ace-installer.helm.releases.ace.values.marketplace-ui.image.repository:
+    #       type: REPO_WITHOUT_REGISTRY
+    #     ace-installer.helm.releases.ace.values.marketplace-ui.image.tag:
+    #       type: TAG
 
     fileserver:
       properties:
@@ -891,15 +903,6 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus-node-exporter.image.tag:
           type: TAG
 
-    kubedb-ui-server:
-      properties:
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kubedb-opscenter.values.kubedb-ui-server.image.tag:
-          type: TAG
-
     capi-ops-manager:
       properties:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.registry:
@@ -907,15 +910,6 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.repository:
           type: REPO_WITHOUT_REGISTRY
         ace-installer.helm.releases.opscenter-features.values.helm.releases.capi-ops-manager.values.image.tag:
-          type: TAG
-
-    docker-machine-operator:
-      properties:
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.docker-machine-operator.values.image.tag:
           type: TAG
 
     kube-ui-server:
