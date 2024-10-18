@@ -1,12 +1,12 @@
 flux2:
   cli:
     image: ghcr.io/appscode-gcp-mp/ace-mp/flux-cli
-    tag: v0.1.20241007
+    tag: v0.1.20241017
   helmController:
     create: true
     image: ghcr.io/appscode-gcp-mp/ace-mp/flux-helm-controller
-    tag: v0.1.20241007
+    tag: v0.1.20241017
   sourceController:
     create: true
     image: ghcr.io/appscode-gcp-mp/ace-mp/flux-source-controller
-    tag: v0.1.20241007
+    tag: v0.1.20241017

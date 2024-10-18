@@ -94,7 +94,7 @@ Copy install commands from gcloud stable docker file
 
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
-export TAG=0.1.20241007
+export TAG=0.1.20241017
 
 git fetch origin
 git checkout master

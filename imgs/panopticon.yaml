@@ -1,5 +1,5 @@
 image:
   registry: ghcr.io
   repository: appscode-gcp-mp/ace-mp/panopticon
-  tag: 0.1.20241007
+  tag: 0.1.20241017
 registryFQDN: ""
