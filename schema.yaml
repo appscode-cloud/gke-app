@@ -846,14 +846,14 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.prometheusConfigReloader.image.tag:
           type: TAG
 
-    thanos:
-      properties:
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.tag:
-          type: TAG
+    # thanos:
+    #   properties:
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.registry:
+    #       type: REGISTRY
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.repository:
+    #       type: REPO_WITHOUT_REGISTRY
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheusOperator.thanosImage.image.tag:
+    #       type: TAG
 
     prometheus:
       properties:
@@ -864,14 +864,14 @@ x-google-marketplace:
         ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.prometheus.prometheusSpec.image.tag:
           type: TAG
 
-    thanosRuler:
-      properties:
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.registry:
-          type: REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.repository:
-          type: REPO_WITHOUT_REGISTRY
-        ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.tag:
-          type: TAG
+    # thanosRuler:
+    #   properties:
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.registry:
+    #       type: REGISTRY
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.repository:
+    #       type: REPO_WITHOUT_REGISTRY
+    #     ace-installer.helm.releases.opscenter-features.values.helm.releases.kube-prometheus-stack.values.thanosRuler.thanosRulerSpec.image.tag:
+    #       type: TAG
 
     kube-state-metrics:
       properties:
