@@ -54,6 +54,13 @@ curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.20
 - install docker
 - install gcloud cli
 
+- install crane
+
+```
+curl -sL "https://github.com/google/go-containerregistry/releases/latest/download/go-containerregistry_Linux_x86_64.tar.gz" >/tmp/go-containerregistry.tar.gz
+tar -zxvf /tmp/go-containerregistry.tar.gz -C /usr/local/bin
+```
+
 - https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/mpdev-references.md
 
 ```bash
@@ -62,6 +69,8 @@ cd
 
 gcloud init
 gcloud auth configure-docker
+
+gcloud auth configure-docker us-docker.pkg.dev
 ```
 
 - install mpdev
@@ -95,6 +104,14 @@ Copy install commands from gcloud stable docker file
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
 export TAG=0.20241017.0
+
+## Publish deployer image
+
+```
+crane cp ghcr.io/appscode-gcp-mp/ace-mp/deployer:$TAG us-docker.pkg.dev/appscode-public/ace-mp/deployer:$TAG
+```
+
+## Dev workflow
 
 git fetch origin
 git checkout master
