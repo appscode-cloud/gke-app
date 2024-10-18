@@ -107,6 +107,8 @@ export TAG=0.20241017.0
 
 ## Publish deployer image
 
+- https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/building-deployer.md#tagging-your-images
+
 ```
 crane cp ghcr.io/appscode-gcp-mp/ace-mp/deployer:$TAG us-docker.pkg.dev/appscode-public/ace-mp/deployer:$TAG
 TRACK_ID=$(echo "$TAG" | sed 's/\.[^.]*$//')
