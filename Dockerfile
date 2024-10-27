@@ -60,3 +60,5 @@ RUN set -x \
   && apt-get update \
   && apt-get install -y --no-install-recommends ca-certificates curl unzip \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
+
+COPY data-test /data-test

@@ -128,6 +128,9 @@ docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
 kubectl delete namespace ace
 kubectl create namespace ace
 
+mpdev verify \
+  --deployer=$REGISTRY/$APP_NAME/deployer:$TAG
+
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
   --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.com/links/installer/332800/tamal-gcp-mp/cs68ln0r266s739nfl50-4ld8gh48cw/archive.tar.gz"}'
