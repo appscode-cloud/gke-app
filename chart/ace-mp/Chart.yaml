@@ -2,8 +2,8 @@ apiVersion: v2
 name: ace-mp
 description: Helm chart to install ACE as a Kubernetes App
 type: application
-version: v2024.10.17
-appVersion: v2024.10.17
+version: v2024.10.24
+appVersion: v2024.10.24
 dependencies:
 - name: cert-manager-csi-driver-cacerts
   repository: oci://ghcr.io/appscode-charts

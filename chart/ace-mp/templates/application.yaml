@@ -10,7 +10,7 @@ metadata:
 spec:
   descriptor:
     type: ace-mp
-    version: '0.20241017.0'
+    version: '0.20241024.0'
   selector:
     matchLabels:
       app.kubernetes.io/name: "{{ .Release.Name }}"

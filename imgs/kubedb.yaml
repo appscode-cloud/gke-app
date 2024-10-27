@@ -7,12 +7,12 @@ kubedb-autoscaler:
   operator:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-autoscaler
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
   waitfor:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/k8s-wait-for
-    tag: 0.20241017.0
+    tag: 0.20241024.0
 kubedb-catalog:
   customVersions:
     pgversion:
@@ -32,17 +32,17 @@ kubedb-catalog:
               volumeSnapshot:
                 name: volume-snapshot
           walg:
-            image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-archiver:0.20241017.0
+            image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-archiver:0.20241024.0
         coordinator:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/pg-coordinator:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/pg-coordinator:0.20241024.0
         db:
           baseOS: alpine
-          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres:0.20241024.0
         distribution: Official
         exporter:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-exporter:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-exporter:0.20241024.0
         initContainer:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-init:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/postgres-init:0.20241024.0
         podSecurityPolicies:
           databasePolicyName: postgres-db
         securityContext:
@@ -65,13 +65,13 @@ kubedb-catalog:
         name: 7.2.4-gcp-mp
       spec:
         coordinator:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-coordinator:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-coordinator:0.20241024.0
         db:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/redis:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis:0.20241024.0
         exporter:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/redis_exporter:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis_exporter:0.20241024.0
         initContainer:
-          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-init:0.20241017.0
+          image: ghcr.io/appscode-gcp-mp/ace-mp/redis-init:0.20241024.0
         podSecurityPolicies:
           databasePolicyName: redis-db
         securityContext:
@@ -95,7 +95,7 @@ kubedb-crd-manager:
   image:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-crd-manager
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
 kubedb-dashboard:
   enabled: false
@@ -108,60 +108,60 @@ kubedb-ops-manager:
   operator:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-ops-manager
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
   waitfor:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/k8s-wait-for
-    tag: 0.20241017.0
+    tag: 0.20241024.0
 kubedb-provisioner:
   enabled: true
   operator:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-provisioner
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
   waitfor:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/k8s-wait-for
-    tag: 0.20241017.0
+    tag: 0.20241024.0
 kubedb-schema-manager:
   enabled: false
   operator:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-schema-manager
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
   waitfor:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/k8s-wait-for
-    tag: 0.20241017.0
+    tag: 0.20241024.0
 kubedb-webhook-server:
   registryFQDN: ""
   server:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kubedb-webhook-server
-    tag: 0.20241017.0
+    tag: 0.20241024.0
 petset:
   operator:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/petset
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   rbacproxy:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/kube-rbac-proxy
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
 sidekick:
   enabled: false
   image:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/sidekick
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
 supervisor:
   image:
     registry: ghcr.io
     repository: appscode-gcp-mp/ace-mp/supervisor
-    tag: 0.20241017.0
+    tag: 0.20241024.0
   registryFQDN: ""
