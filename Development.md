@@ -129,7 +129,8 @@ kubectl delete namespace ace
 kubectl create namespace ace
 
 mpdev verify \
-  --deployer=$REGISTRY/$APP_NAME/deployer:$TAG
+  --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
+  --wait_timeout=600
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
