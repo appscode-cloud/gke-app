@@ -110,6 +110,8 @@ export TAG=0.20241024.0
 - https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/building-deployer.md#tagging-your-images
 
 ```
+crane cp ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241017.0 ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241024.0
+
 crane cp ghcr.io/appscode-gcp-mp/ace-mp/deployer:$TAG us-docker.pkg.dev/appscode-public/ace-mp/deployer:$TAG
 TRACK_ID=$(echo "$TAG" | sed 's/\.[^.]*$//')
 crane cp ghcr.io/appscode-gcp-mp/ace-mp/deployer:$TAG us-docker.pkg.dev/appscode-public/ace-mp/deployer:$TRACK_ID
