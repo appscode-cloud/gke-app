@@ -2,7 +2,7 @@
 
 helm dependency update chart/ace-mp
 helm package chart/ace-mp
-helm push ace-mp-v2024.10.24.tgz oci://ghcr.io/appscode-charts
+helm push ace-mp-v2024.11.18.tgz oci://ghcr.io/appscode-charts
 
 ## fmt
 
@@ -103,14 +103,14 @@ Copy install commands from gcloud stable docker file
 
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
-export TAG=0.20241024.0
+export TAG=0.20241118.0
 
 ## Publish deployer image
 
 - https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/blob/master/docs/building-deployer.md#tagging-your-images
 
 ```
-crane cp ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241017.0 ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241024.0
+crane cp ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241017.0 ghcr.io/appscode-gcp-mp/ace-mp/prometheus-operator:0.20241118.0
 
 crane cp ghcr.io/appscode-gcp-mp/ace-mp/deployer:$TAG us-docker.pkg.dev/appscode-public/ace-mp/deployer:$TAG
 TRACK_ID=$(echo "$TAG" | sed 's/\.[^.]*$//')

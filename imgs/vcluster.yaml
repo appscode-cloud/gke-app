@@ -1,10 +1,10 @@
 plugin:
   vcluster-plugin:
-    image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster-plugin:v0.20241024.0
+    image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster-plugin:v0.20241118.0
 syncer:
   replicas: 1
-  image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster:v0.20241024.0
+  image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster:v0.20241118.0
 vcluster:
-  image: ghcr.io/appscode-gcp-mp/ace-mp/k0s:v0.20241024.0
+  image: ghcr.io/appscode-gcp-mp/ace-mp/k0s:v0.20241118.0
 coredns:
-  image: ghcr.io/appscode-gcp-mp/coredns:v0.20241024.0
+  image: ghcr.io/appscode-gcp-mp/coredns:v0.20241118.0
