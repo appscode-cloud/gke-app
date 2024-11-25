@@ -27,7 +27,7 @@ echo 'fs.inotify.max_user_watches=100000' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 
 # Create k3s cluster
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.128"
 
 echo 'alias k=kubectl' >> ~/.bashrc
 echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
@@ -35,7 +35,7 @@ source ~/.bashrc
 
 # Recreate k3s cluster
 k3s-uninstall.sh
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.128"
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/crd/app-crd.yaml"
 
@@ -136,7 +136,7 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.com/links/installer/332800/tamal-gcp-mp/cs68ln0r266s739nfl50-4ld8gh48cw/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/tamal-gcp-mp/ct2erhf6tqec73et0v8g-w295wqvqsh/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 

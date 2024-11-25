@@ -102,7 +102,7 @@ function ace::gcp::finalize_installer() {
 }
 
 function ace::gcp::init() {
-  ace::gcp::install_gcloud
+  # ace::gcp::install_gcloud
   ace::gcp::setup_gcloud
   ace::gcp::create_bucket
   ace::gcp::create_static_public_ip
