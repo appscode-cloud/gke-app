@@ -2,6 +2,7 @@
 
 set -exo pipefail
 
+export API_SECRET=${API_SECRET:-}
 export GCP_PROJECT=${GCP_PROJECT:-"appscode-testing"}
 export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS:-gcp-cred.json}
 export REGION=${REGION:-us-central1}
@@ -50,7 +51,7 @@ function ace::gcp::create_static_public_ip() {
 }
 
 function ace::gcp::finalize_installer() {
-  resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=72iuueq9sbiomgxgcbdbehfbhai1fqgg4dlpndxsh4rstoptvbvrkje88ob6cdkuv16nbpoym1/griswiujgga== \
+  resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
     -H "Content-Type: application/json" \
     -d '{
               "eventType": "BIND",
@@ -102,7 +103,7 @@ function ace::gcp::finalize_installer() {
 }
 
 function ace::gcp::init() {
-  # ace::gcp::install_gcloud
+  ace::gcp::install_gcloud
   ace::gcp::setup_gcloud
   ace::gcp::create_bucket
   ace::gcp::create_static_public_ip
