@@ -98,8 +98,8 @@ function ace::gcp::finalize_installer() {
   link=$(echo ${resp} | jq -r '.link')
   if [ ${link} == "null" ]; then exit; fi
 
-  curl -L "${link}" -o "archive.zip"
-  unzip archive.zip >/dev/null
+  curl -L "${link}" -o "archive.tar.gz"
+  tar -zxvf archive.tar.gz >/dev/null
 }
 
 function ace::gcp::init() {

@@ -119,10 +119,11 @@ else
   source ./env.sh
   export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
 
+  export PUBLIC_IP=192.168.0.128
   source /bin/create_resources.sh
   ace::gcp::setup_gcloud
   ace::gcp::create_bucket
-  ace::gcp::create_static_public_ip
+  # ace::gcp::create_static_public_ip
   ace::gcp::finalize_installer
 fi
 
