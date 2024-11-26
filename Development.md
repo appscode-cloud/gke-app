@@ -139,7 +139,7 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/tamal-gcp-mp/ct2erhf6tqec73et0v8g-w295wqvqsh/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/tamal-gcp-mp/ct2vq9001e8c73dg6hl0-jtl6wxqz5p/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 
