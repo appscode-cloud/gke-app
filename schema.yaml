@@ -1000,6 +1000,13 @@ x-google-marketplace:
         resources:
         - 'csidrivers'
         verbs: ['get', 'create']
+      - apiGroups:
+        - ''
+        resources:
+        - 'namespaces'
+        resourceNames:
+        - 'kube-system'
+        verbs: ['get']
 
 properties:
   name:
