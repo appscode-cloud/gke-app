@@ -51,7 +51,7 @@ function ace::gcp::create_static_public_ip() {
 }
 
 function ace::gcp::finalize_installer() {
-  resp=$(curl -X POST https://appscode.com/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
+  resp=$(curl -X POST https://appscode.ninja/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
     -H "Content-Type: application/json" \
     -d '{
               "eventType": "BIND",
