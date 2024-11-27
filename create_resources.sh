@@ -51,12 +51,17 @@ function ace::gcp::create_static_public_ip() {
 }
 
 function ace::gcp::finalize_installer() {
+  CLUSTER_ID=$(kubectl get ns kube-system -o=jsonpath='{.metadata.uid}')
+  UTC_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
+
   resp=$(curl -X POST https://appscode.ninja/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
     -H "Content-Type: application/json" \
     -d '{
               "eventType": "BIND",
+              "eventTime": "'${UTC_TIME}'",
               "bindingInfo": {
                 "installerID": "'${INSTALLER_ID}'",
+                "clusterId": "'${CLUSTER_ID}'",
                 "options": {
                   "infra": {
                     "dns": {
