@@ -105,6 +105,15 @@ Copy install commands from gcloud stable docker file
 
 ---
 
+## GCP APIs
+
+- Activate "Cloud Resource Manager API" in the project
+- Grant "Storage Admin" permission to service account so buckets can be created
+
+- https://console.cloud.google.com/marketplace/product/google/cloudresourcemanager.googleapis.com?q=search&referrer=search&inv=1&invt=Abikag&project=appscode-dev1
+
+---
+
 export REGISTRY=ghcr.io/appscode-gcp-mp
 export APP_NAME=ace-mp
 export TAG=0.20241118.0
