@@ -38,6 +38,7 @@ source ~/.bashrc
 k3s-uninstall.sh
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.128"
+
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/crd/app-crd.yaml"
 kubectl create namespace ace
@@ -139,7 +140,7 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/tamal-gcp-mp/ct302p801e8c73dg6hlg-gfvks672dm/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/tamal-gcp-mp/ct382643robs73aepe90-9l874sw78g/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 
