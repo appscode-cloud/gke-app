@@ -101,6 +101,7 @@ helm:
       values:
         platform-api:
           settings:
+            skipGCPMarketplaceMeteringService: ${SKIP_GCP}
             secretName:
               gcpMarketplaceReportingSecret: "${REPORTING_SECRET}"
 EOF
@@ -109,23 +110,24 @@ echo "=== download installer archive ==="
 INSTALLER_URL=$(/bin/print_config.py --output=yaml |
   python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["installerURL"])')
 
+wget $INSTALLER_URL
+tar -xzvf archive.tar.gz
+
+source ./env.sh
+export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
+
 if [ "$SKIP_GCP" = true ]; then
-  wget $INSTALLER_URL
-  tar -xzvf archive.tar.gz
-else
-  wget $INSTALLER_URL
-  tar -xzvf archive.tar.gz
-
-  source ./env.sh
-  export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
-
   export PUBLIC_IP=192.168.0.128
   export BUCKET_NAME=ace-bucket-nuyd
 
   source /bin/create_resources.sh
   ace::gcp::setup_gcloud
-  # ace::gcp::create_bucket
-  # ace::gcp::create_static_public_ip
+  ace::gcp::finalize_installer
+else
+  source /bin/create_resources.sh
+  ace::gcp::setup_gcloud
+  ace::gcp::create_bucket
+  ace::gcp::create_static_public_ip
   ace::gcp::finalize_installer
 fi
 

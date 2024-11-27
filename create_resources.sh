@@ -2,6 +2,7 @@
 
 set -exo pipefail
 
+export API_DOMAIN=${API_DOMAIN:-"appscode.com"}
 export API_SECRET=${API_SECRET:-}
 export GCP_PROJECT=${GCP_PROJECT:-"appscode-testing"}
 export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS:-gcp-cred.json}
@@ -54,7 +55,7 @@ function ace::gcp::finalize_installer() {
   CLUSTER_ID=$(kubectl get ns kube-system -o=jsonpath='{.metadata.uid}')
   UTC_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
 
-  resp=$(curl -X POST https://appscode.ninja/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
+  resp=$(curl -X POST https://${API_DOMAIN}/marketplace/api/v1/marketplaces/gcp/notification/resource?secret=${API_SECRET} \
     -H "Content-Type: application/json" \
     -d '{
               "eventType": "BIND",
