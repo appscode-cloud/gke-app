@@ -11,4 +11,4 @@ properties:
       type: NAMESPACE
   installerURL:
     type: string
-    default: https://appscode.com/links/installer/332800/tamal-gcp-mp/cs68ln0r266s739nfl50-4ld8gh48cw/archive.tar.gz
+    default: https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz
