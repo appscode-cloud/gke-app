@@ -5,11 +5,13 @@ metadata:
   labels:
     {{- include "ace-mp.labels" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": test
+    "helm.sh/hook": test-success
 spec:
   containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args: ['https://appscode.com']
+  - name: wget
+    image: {{ .Values.tester.image }}
+    command:
+    - curl
+    - -k
+    - "https://ace-ingress-x-ace-x-{{ .Release.Name }}"
   restartPolicy: Never

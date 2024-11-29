@@ -1,14 +1,4 @@
 properties:
-  name:
-    default: ace-mp
-    type: string
-    x-google-marketplace:
-      type: NAME
-  namespace:
-    default: ace
-    type: string
-    x-google-marketplace:
-      type: NAMESPACE
   installerURL:
     type: string
     default: https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz

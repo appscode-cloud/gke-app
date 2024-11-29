@@ -43,3 +43,6 @@ vcluster:
         enabled: true
   telemetry:
     enabled: false
+
+tester:
+  image: "curlimages/curl:8.10.1"

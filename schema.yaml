@@ -11,6 +11,10 @@ x-google-marketplace:
 
   # The images property will be filled in during part 2
   images:
+    curl:
+      properties:
+        tester.image:
+          type: FULL
     csi-driver-cacerts:
       properties:
         cert-manager-csi-driver-cacerts.driver.registry:
