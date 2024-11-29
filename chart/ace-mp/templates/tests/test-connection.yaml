@@ -11,8 +11,8 @@ spec:
   - name: wget
     image: {{ .Values.tester.image }}
     command:
-    - true
-    # command:
+    - sleep
+    - 600
     # - curl
     # - -k
     # - "https://ace-ingress-x-ace-x-{{ .Release.Name }}"
