@@ -1032,9 +1032,9 @@ properties:
     type: boolean
     x-google-marketplace:
       type: ISTIO_ENABLED
-  skipGcp:
+  skipGCP:
     type: string
-  publicIp:
+  publicIP:
     type: string
   bucketName:
     type: string
