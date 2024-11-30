@@ -45,4 +45,4 @@ vcluster:
     enabled: false
 
 tester:
-  image: "curlimages/curl:8.10.1"
+  image: "ghcr.io/appscode/kubectl-nonroot:1.31"
