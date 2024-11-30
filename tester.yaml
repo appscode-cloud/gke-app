@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "ace-test-connection"
+  namespace: ace
+spec:
+  containers:
+  - name: tester
+    image: ghcr.io/appscode/kubectl-nonroot:1.31
+    command:
+    - /bin/sh
+    - -c
+    - sleep 500 &&
+      kubectl wait --for=create -n ace service/ace-ingress-x-ace-x-ace-mp --timeout=5m &&
+      sleep 30 &&
+      curl -k "https://ace-ingress-x-ace-x-ace-mp"
+  restartPolicy: Never
