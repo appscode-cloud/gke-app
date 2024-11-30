@@ -2,3 +2,12 @@ properties:
   installerURL:
     type: string
     default: https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz
+  skipGCP:
+    type: string
+    default: "true"
+  publicIP:
+    type: string
+    default: "192.168.0.128"
+  bucketName:
+    type: string
+    default: "ace-bucket-nuyd"
