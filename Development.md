@@ -139,7 +139,7 @@ kubectl create namespace ace
 
 
 docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
---build-arg CLOUD_SDK_VERSION=484.0.0 \
+--build-arg CLOUD_SDK_VERSION=502.0.0 \
 --build-arg SKIP_GCP=true
 
 kubectl delete namespace ace
