@@ -15,7 +15,8 @@ spec:
     command:
     - /bin/sh
     - -c
-    - kubectl wait --for=create -n {{ .Release.Namespace }} service/ace-ingress-x-ace-x-{{ .Release.Name }} --timeout=5m &&
+    - sleep 500 &&
+      kubectl wait --for=create -n {{ .Release.Namespace }} service/ace-ingress-x-ace-x-{{ .Release.Name }} --timeout=5m &&
       sleep 30 &&
       curl -k "https://ace-ingress-x-ace-x-{{ .Release.Name }}
   restartPolicy: Never
