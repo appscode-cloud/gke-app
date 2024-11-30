@@ -13,8 +13,9 @@ spec:
     command:
     - /bin/sh
     - -c
-    - sleep 500 &&
-      kubectl wait --for=create -n {{ .Release.Namespace }} service -l 'app.kubernetes.io/name=kubedb-webhook-server' --timeout=5m &&
-      sleep 30 &&
-      curl -k "https://ace-ingress-x-ace-x-{{ .Release.Name }}
+    - sleep 5000
+    # - sleep 500 &&
+    #   kubectl wait --for=create -n {{ .Release.Namespace }} service -l 'app.kubernetes.io/name=kubedb-webhook-server' --timeout=5m &&
+    #   sleep 30 &&
+    #   curl -k "https://ace-ingress-x-ace-x-{{ .Release.Name }}
   restartPolicy: Never

@@ -139,10 +139,7 @@ kubectl create namespace ace
 
 
 docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
---build-arg CLOUD_SDK_VERSION=502.0.0 \
---build-arg SKIP_GCP=true \
---build-arg PUBLIC_IP=192.168.0.128 \
---build-arg BUCKET_NAME=ace-bucket-nuyd
+--build-arg CLOUD_SDK_VERSION=502.0.0
 
 kubectl delete namespace ace
 kubectl create namespace ace
@@ -153,7 +150,9 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml",
+  "skipGCP": true, "public_IP": "192.168.0.40", "bucketName": "ace-bucket-nuyd",
+  "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 

@@ -83,6 +83,9 @@ echo "=== values.yaml ==="
 /bin/print_config.py --output=yaml
 echo "==================="
 
+SKIP_GCP=$(/bin/print_config.py --output=yaml |
+  python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["skipGCP"])')
+
 echo "=== prepare reporting secret values ==="
 REPORTING_SECRET=$(/bin/print_config.py --output=yaml |
   python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["reportingSecret"])')
@@ -117,6 +120,11 @@ source ./env.sh
 export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
 
 if [ "$SKIP_GCP" = true ]; then
+  export PUBLIC_IP=$(/bin/print_config.py --output=yaml |
+    python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["publicIP"])')
+  export BUCKET_NAME=$(/bin/print_config.py --output=yaml |
+    python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["bucketName"])')
+
   source /bin/create_resources.sh
   ace::gcp::setup_gcloud
   ace::gcp::finalize_installer
