@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "ace-test-connection"
+  name: ace-tester
   namespace: ace
 spec:
   containers:
@@ -15,4 +15,5 @@ spec:
         echo "Request failed, retrying in 5 seconds..."
         sleep 5
       done
+      echo "Test successful!"
   restartPolicy: Never

@@ -20,4 +20,5 @@ spec:
         echo "Request failed, retrying in 5 seconds..."
         sleep 5
       done
+      echo "Test successful!"
   restartPolicy: Never
