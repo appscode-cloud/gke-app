@@ -27,7 +27,7 @@ echo 'fs.inotify.max_user_watches=100000' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 
 # Create k3s cluster
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.128"
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.40"
 
 echo 'alias k=kubectl' >> ~/.bashrc
 echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
@@ -140,7 +140,9 @@ kubectl create namespace ace
 
 docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
 --build-arg CLOUD_SDK_VERSION=502.0.0 \
---build-arg SKIP_GCP=true
+--build-arg SKIP_GCP=true \
+--build-arg PUBLIC_IP=192.168.0.128 \
+--build-arg BUCKET_NAME=ace-bucket-nuyd
 
 kubectl delete namespace ace
 kubectl create namespace ace

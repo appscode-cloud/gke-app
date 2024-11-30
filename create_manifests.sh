@@ -117,9 +117,6 @@ source ./env.sh
 export INSTALLER_ID=$(echo $INSTALLER_URL | awk -F '[/]' '{ print $8 }')
 
 if [ "$SKIP_GCP" = true ]; then
-  export PUBLIC_IP=192.168.0.128
-  export BUCKET_NAME=ace-bucket-nuyd
-
   source /bin/create_resources.sh
   ace::gcp::setup_gcloud
   ace::gcp::finalize_installer
