@@ -11,10 +11,6 @@ x-google-marketplace:
 
   # The images property will be filled in during part 2
   images:
-    curl:
-      properties:
-        tester.image:
-          type: FULL
     csi-driver-cacerts:
       properties:
         cert-manager-csi-driver-cacerts.driver.registry:
@@ -528,6 +524,9 @@ x-google-marketplace:
 
     kubectl-nonroot:
       properties:
+        tester.image:
+          type: FULL
+
         ace-installer.helm.releases.ace.values.kubectl.registry:
           type: REGISTRY
         ace-installer.helm.releases.ace.values.kubectl.repository:

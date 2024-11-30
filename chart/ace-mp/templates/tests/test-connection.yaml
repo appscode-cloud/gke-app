@@ -8,12 +8,12 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-  - name: wget
+  - name: tester
     image: {{ .Values.tester.image }}
     command:
-    - sleep
-    - 600
-    # - curl
-    # - -k
-    # - "https://ace-ingress-x-ace-x-{{ .Release.Name }}"
+    - /bin/sh
+    - -c
+    - sleep 500 &&
+      kubectl wait --for=create -n {{ .Release.Namespace }} service -l 'app.kubernetes.io/name=kubedb-webhook-server' --timeout=5m &&
+      curl -k "https://ace-ingress-x-ace-x-{{ .Release.Name }}
   restartPolicy: Never
