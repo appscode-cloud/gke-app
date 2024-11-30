@@ -10,8 +10,9 @@ spec:
     command:
     - /bin/sh
     - -c
-    - sleep 500 &&
-      kubectl wait --for=create -n ace service/ace-ingress-x-ace-x-ace-mp --timeout=5m &&
-      sleep 30 &&
-      curl -k "https://ace-ingress-x-ace-x-ace-mp"
+    - |-
+      while ! curl -k -s "https://ace-ingress-x-ace-x-ace-mp" > /dev/null; do
+        echo "Request failed, retrying in 5 seconds..."
+        sleep 5
+      done
   restartPolicy: Never

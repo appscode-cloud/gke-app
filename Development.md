@@ -135,7 +135,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=met
 
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/crd/app-crd.yaml"
-kubectl create namespace ace
+kubectl create namespace apptest-pmd6xqbe
 
 
 docker build --push --tag $REGISTRY/$APP_NAME/deployer:$TAG . \
@@ -150,7 +150,7 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "skipGCP": "true", "publicIP": "192.168.0.40", "bucketName": "ace-bucket-nuyd", "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
+  --parameters='{"name": "apptest-pmd6xqbe", "namespace": "apptest-pmd6xqbe", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "skipGCP": "true", "publicIP": "192.168.0.40", "bucketName": "ace-bucket-nuyd", "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 
