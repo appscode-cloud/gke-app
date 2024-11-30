@@ -1033,7 +1033,7 @@ properties:
     x-google-marketplace:
       type: ISTIO_ENABLED
   skipGcp:
-    type: bool
+    type: string
   publicIp:
     type: string
   bucketName:

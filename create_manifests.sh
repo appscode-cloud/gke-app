@@ -83,8 +83,12 @@ echo "=== values.yaml ==="
 /bin/print_config.py --output=yaml
 echo "==================="
 
-SKIP_GCP=$(/bin/print_config.py --output=yaml |
+skipGCP=$(/bin/print_config.py --output=yaml |
   python -c 'import sys, yaml ; y=yaml.safe_load(sys.stdin.read()) ; print(y["skipGCP"])')
+SKIP_GCP=false
+if [ "$skipGCP" = "true" ]; then
+  SKIP_GCP=true
+fi
 
 echo "=== prepare reporting secret values ==="
 REPORTING_SECRET=$(/bin/print_config.py --output=yaml |
