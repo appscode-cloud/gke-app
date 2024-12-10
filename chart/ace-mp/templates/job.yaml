@@ -46,6 +46,7 @@ spec:
         - /bin/sh
         - -c
         - |-
+          set -x
           kubectl wait --for=create pod/ace-platform-api-0-x-ace-x-{{ .Release.Name }} --timeout=15m
           kubectl wait --for=condition=Ready pod/ace-platform-api-0-x-ace-x-{{ .Release.Name }} --timeout=15m
           echo "api pod running!"
