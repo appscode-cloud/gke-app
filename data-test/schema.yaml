@@ -7,7 +7,7 @@ properties:
     default: "true"
   publicIP:
     type: string
-    default: "192.168.0.128"
+    default: "192.168.0.193"
   bucketName:
     type: string
     default: "ace-bucket-nuyd"
