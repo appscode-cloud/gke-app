@@ -27,7 +27,7 @@ echo 'fs.inotify.max_user_watches=100000' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 
 # Create k3s cluster
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.40"
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.193"
 
 echo 'alias k=kubectl' >> ~/.bashrc
 echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
@@ -150,7 +150,7 @@ mpdev verify \
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "skipGCP": "true", "publicIP": "192.168.0.40", "bucketName": "ace-bucket-nuyd", "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
+  --parameters='{"name": "ace-mp", "namespace": "ace", "reportingSecret": "gs://cloud-marketplace-tools/reporting_secrets/fake_reporting_secret.yaml", "skipGCP": "true", "publicIP": "192.168.0.193", "bucketName": "ace-bucket-nuyd", "installerURL": "https://appscode.ninja/links/installer/937/DO_NOT_DELETE_gcp-mp-test/ct3bbo6se8oc73dru5u0-xw8jqdbdtp/archive.tar.gz"}'
 
 kubectl get secret -n ace ace-mp-deployer-config -o go-template='{{index .data "values.yaml"}}' | base64 -d
 
@@ -165,3 +165,4 @@ vcluster connect -n ace ace-mp
 vcluster disconnect
 
 vcluster connect ace-mp -n ace -- kubectl get hr -A
+vcluster connect ace-mp -n ace -- kubectl get certs,pg,rd,jobs,pods -n ace
