@@ -146,7 +146,7 @@ kubectl create namespace ace
 
 mpdev verify \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
-  --wait_timeout=900
+  --wait_timeout=1200
 
 mpdev install \
   --deployer=$REGISTRY/$APP_NAME/deployer:$TAG \
@@ -164,5 +164,5 @@ vcluster connect -n ace ace-mp
 
 vcluster disconnect
 
-vcluster connect apptest-kjqx83hm -n apptest-kjqx83hm -- kubectl get hr -A
-vcluster connect apptest-kjqx83hm -n apptest-kjqx83hm -- kubectl get certs,pg,rd,jobs,pods -n ace
+vcluster connect apptest-ras4557c -n apptest-ras4557c -- kubectl get hr -A
+vcluster connect apptest-ras4557c -n apptest-ras4557c -- kubectl get certs,pg,rd,jobs,pods -n ace
