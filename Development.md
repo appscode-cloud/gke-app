@@ -131,7 +131,7 @@ git reset --hard origin/master
 
 k3s-uninstall.sh
 
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.128"
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik --disable=metrics-server" sh -s - --tls-san "192.168.0.193"
 
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 kubectl apply -f "https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools/raw/master/crd/app-crd.yaml"
