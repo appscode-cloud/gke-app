@@ -46,7 +46,8 @@ spec:
         - /bin/sh
         - -c
         - |-
-          kubectl wait --for=condition=Ready pod/ace-platform-api-0-x-ace-x-{{ .Release.Name }}  --timeout=15m
+          kubectl wait --for=create pod/ace-platform-api-0-x-ace-x-{{ .Release.Name }} --timeout=15m
+          kubectl wait --for=condition=Ready pod/ace-platform-api-0-x-ace-x-{{ .Release.Name }} --timeout=15m
           echo "api pod running!"
           while ! curl -k -s "https://ace-ingress-x-ace-x-{{ .Release.Name }}" > /dev/null; do
             echo "Request failed, retrying in 5 seconds..."
