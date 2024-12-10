@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name: {{ include "ace-mp.fullname" . }}-checker
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: "{{ .Release.Name }}"
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: {{ .Values.tester.image }}
+        command:
+        - /bin/sh
+        - -c
+        - |-
+          while ! curl -k -s "https://ace-ingress-x-ace-x-{{ .Release.Name }}" > /dev/null; do
+            echo "Request failed, retrying in 5 seconds..."
+            sleep 5
+          done
+          echo "Test successful!"
+      restartPolicy: Never

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name: ace-mp-checker
+  namespace: ace
+  labels:
+    app.kubernetes.io/name: ace-mp
+spec:
+  template:
+    spec:
+      containers:
+      - name: tester
+        image: ghcr.io/appscode/kubectl-nonroot:1.31
+        command:
+        - /bin/sh
+        - -c
+        - |-
+          while ! curl -k -s "https://ace-ingress-x-ace-x-ace-mp" > /dev/null; do
+            echo "Request failed, retrying in 5 seconds..."
+            sleep 5
+          done
+          echo "Test successful!"
+      restartPolicy: Never

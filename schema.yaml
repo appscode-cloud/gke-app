@@ -1010,11 +1010,6 @@ x-google-marketplace:
         resourceNames:
         - 'kube-system'
         verbs: ['get']
-      - apiGroups:
-        - ''
-        resources:
-        - 'services'
-        verbs: ['get', 'list', 'watch']
 
 properties:
   name:

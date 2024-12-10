@@ -11,7 +11,6 @@ spec:
   containers:
   - name: tester
     image: {{ .Values.tester.image }}
-    serviceAccountName: {{ .Release.Name }}-deployer-sa
     command:
     - /bin/sh
     - -c
