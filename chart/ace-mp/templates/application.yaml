@@ -28,3 +28,9 @@ spec:
     kind: StatefulSet
   - group: cacerts.csi.cert-manager.io
     kind: CAProviderClass
+  - group: ""
+    kind: ServiceAccount
+  - group: rbac.authorization.k8s.io
+    kind: Role
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
