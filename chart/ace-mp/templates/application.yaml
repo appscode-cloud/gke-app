@@ -18,3 +18,13 @@ spec:
   componentKinds:
   - group: batch
     kind: Job
+  - group: ""
+    kind: Pod
+  - group: ""
+    kind: Service
+  - group: apps
+    kind: DaemonSet
+  - group: apps
+    kind: StatefulSet
+  - group: cacerts.csi.cert-manager.io
+    kind: CAProviderClass
