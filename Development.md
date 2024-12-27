@@ -164,5 +164,5 @@ vcluster connect -n ace ace-mp
 
 vcluster disconnect
 
-vcluster connect apptest-ras4557c -n apptest-ras4557c -- kubectl get hr -A
-vcluster connect apptest-ras4557c -n apptest-ras4557c -- kubectl get certs,pg,rd,jobs,pods -n ace
+vcluster connect apptest-q31pno67 -n apptest-q31pno67 -- kubectl get hr -A
+vcluster connect apptest-q31pno67 -n apptest-q31pno67 -- kubectl get certs,pg,rd,jobs,pods -n ace
