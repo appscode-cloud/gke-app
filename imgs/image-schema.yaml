@@ -46,9 +46,9 @@ x-google-marketplace:
       properties:
         vcluster.vcluster.image:
           type: FULL
-    vcluster-plugin:
+    ace-vcluster-plugin:
       properties:
-        vcluster.plugin.vcluster-plugin.image:
+        vcluster.plugin.ace.image:
           type: FULL
     vcluster:
       properties:

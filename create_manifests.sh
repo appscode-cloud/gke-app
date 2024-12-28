@@ -96,7 +96,7 @@ REPORTING_SECRET=$(/bin/print_config.py --output=yaml |
 cat >plugin-config.yaml <<EOF
 vcluster:
   plugin:
-    vcluster-plugin:
+    ace:
       config:
         reportingSecret: "${REPORTING_SECRET}"
 EOF
