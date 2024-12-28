@@ -1,6 +1,6 @@
 plugin:
   ace:
-    image: ghcr.io/appscode-gcp-mp/ace-mp/ace-vcluster-plugin:v0.20241118.0
+    image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster-plugin-ace:v0.20241118.0
 syncer:
   replicas: 1
   image: ghcr.io/appscode-gcp-mp/ace-mp/vcluster:v0.20241118.0

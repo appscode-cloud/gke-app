@@ -67,7 +67,7 @@ x-google-marketplace:
           type: REPO_WITHOUT_REGISTRY
         vcluster.controlPlane.statefulSet.image.tag:
           type: TAG
-    ace-vcluster-plugin:
+    vcluster-plugin-ace:
       properties:
         vcluster.plugin.ace.image:
           type: FULL
