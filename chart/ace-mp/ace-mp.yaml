@@ -43,7 +43,7 @@ vcluster:
         - chart:
             name: ace-installer
             repo: oci://ghcr.io/appscode-charts
-            version: v2024.11.18
+            version: v2025.2.28
           release:
             name: ace-installer
             namespace: kubeops

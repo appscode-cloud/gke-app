@@ -2,7 +2,7 @@
 
 helm dependency update chart/ace-mp
 helm package chart/ace-mp
-helm push ace-mp-v2024.11.18.tgz oci://ghcr.io/appscode-charts
+helm push ace-mp-v2025.2.28.tgz oci://ghcr.io/appscode-charts
 
 ## fmt
 
@@ -37,7 +37,7 @@ source ~/.bashrc
 
 ## install vcluster cli
 
-curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.20.0/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
+curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/download/v0.22.0/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
 
 
 ## Prepare gcp-mp host
